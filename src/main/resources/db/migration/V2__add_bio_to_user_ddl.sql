@@ -1,0 +1,1 @@
+ALTER TABLE user Add(bio varchar(255))
