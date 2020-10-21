@@ -1,0 +1,1 @@
+ALTER TABLE `user`  MODIFY  `account_id` bigint(255) ;

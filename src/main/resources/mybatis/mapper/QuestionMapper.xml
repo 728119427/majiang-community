@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="co.mawen.majiangcommunity.mapper.QuestionMapper">
+
+    <resultMap id="question_user_map" type="question">
+        <id column="id" property="id"></id>
+        <result property="title" column="title"></result>
+        <result column="comment_count" property="commentCount"></result>
+        <result column="creator" property="creator"></result>
+        <result column="gmt_modified" property="gmtModified"></result>
+        <result column="gmt_create" property="gmtCreate"></result>
+        <result column="like_count" property="likeCount"></result>
+        <result column="tag" property="tag"></result>
+        <result column="description" property="description"></result>
+        <result column="view_count" property="viewCount"></result>
+        <association property="user" column="creator" javaType="User">
+            <result property="accountId" column="account_id"></result>
+            <result property="name" column="name"></result>
+            <result property="bio" column="bio"></result>
+            <result property="avatarUrl" column="avatar_url"></result>
+        </association>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="Question">
+        INSERT INTO question(title,description,tag,creator,gmt_create,gmt_modified)VALUES
+        (#{title},#{description},#{tag},#{creator},#{gmtCreate},#{gmtModified})
+    </insert>
+    
+    <select id="list" resultType="Question">
+        SELECT * FROM question
+    </select>
+
+    <select id="list_user" resultMap="question_user_map">
+       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id
+    </select>
+</mapper>

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
@@ -47,19 +46,24 @@ public class AuthorizeController {
         GithubUser githubUser = JSON.parseObject(userData, GithubUser.class);
         if(githubUser!=null){
             //登录成功，保存用户信息
+            System.out.println(githubUser);
             User user = new User();
-            user.setAccountId(githubUser.getId());
+            user.setAccountId(Long.parseLong(githubUser.getId()));
             user.setName(githubUser.getName());
+            user.setBio(githubUser.getBio());
             String token = UUID.randomUUID().toString().replace("-", "").toUpperCase();
             user.setToken(token);
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatarUrl());
             userService.insert(user);
-            response.addCookie(new Cookie("token",token));
-            return "redirect:/";
+            Cookie tokenCookie = new Cookie("token", token);
+            tokenCookie.setMaxAge(604800);//一周有效
+            response.addCookie(tokenCookie);
+            return "redirect:";
         }else {
             //登录失败
-            return "redirect:/";
+            return "redirect:";
         }
 
     }

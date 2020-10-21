@@ -6,7 +6,7 @@ github:
   redirect:
     uri: http://localhost:8080/callback
 
-#\u6570\u636E\u6E90\u914D\u7F6E
+#数据源配置
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -31,9 +31,9 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
 
-
+#mybatis配置
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   type-aliases-package: co.mawen.majiangcommunity.model
-#mybatis\u8BBE\u7F6E
+  mapper-locations: classpath:mybatis/mapper/*.xml
