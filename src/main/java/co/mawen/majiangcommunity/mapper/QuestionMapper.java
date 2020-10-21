@@ -4,6 +4,7 @@ import co.mawen.majiangcommunity.model.Question;
 import org.apache.ibatis.annotations.Insert;
 
 import java.util.List;
+import java.util.Map;
 
 public interface QuestionMapper {
 
@@ -23,5 +24,11 @@ public interface QuestionMapper {
      * 查询所有question关联user
      * @return
      */
-    List<Question> list_user();
+    List<Question> list_user(Map<String,Object> criteria);
+
+    /**
+     * 查询记录数
+     * @return
+     */
+    Integer count();
 }

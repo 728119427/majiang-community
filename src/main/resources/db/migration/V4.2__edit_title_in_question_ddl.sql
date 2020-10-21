@@ -1,0 +1,1 @@
+ALTER TABLE `question`  MODIFY COLUMN `title` varchar(255) CHARACTER SET utf8 ;

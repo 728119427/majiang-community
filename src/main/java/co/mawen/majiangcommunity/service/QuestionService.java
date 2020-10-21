@@ -1,5 +1,6 @@
 package co.mawen.majiangcommunity.service;
 
+import co.mawen.majiangcommunity.dto.PaginationDTO;
 import co.mawen.majiangcommunity.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,5 +26,13 @@ public interface QuestionService {
      * 查询所有questiond关联user
      * @return
      */
-    List<Question> list_user();
+//   List<Question> list_user();
+
+    /**
+     * 分页功能
+     * @param page
+     * @param size
+     * @return
+     */
+    PaginationDTO pagination(Integer page,Integer size);
 }

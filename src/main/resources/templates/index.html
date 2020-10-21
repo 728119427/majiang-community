@@ -68,15 +68,15 @@
 </nav>
 <!--顶部导航条结束-->
 
-<!--发起问题开始-->
+<!--话题-->
 <div class="container-fluid main" >
     <div class="row">
-        <!--左边，发布主体-->
+        <!--左边-->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
             <hr>
-            <!--表单-->
-            <div class="media" th:each="question : ${questions}">
+            <!--问题列表-->
+            <div class="media" th:each="question : ${pagination.dataList}">
                 <!--user-->
                 <div class="media-left">
                     <a href="#">
@@ -84,30 +84,77 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${question.title}">问题标题！！！</h4>
-                    <div th:text="${question.description}"></div>
+                    <h4 class="media-heading" style="color: #337ab7" th:text="${question.title}">问题标题！！！</h4>
+<!--                    <div th:text="${question.description}" style="color: #337ab7"></div>-->
                     <span class="text-color-999">
                         <span th:text="${question.user.name}"></span>发起了问题
                         • <span th:text="${question.likeCount}"></span> 人关注
                         • <span th:text="${question.commentCount}"></span> 个回复
                         • <span th:text="${question.viewCount}"></span> 次浏览
-                        • <span th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                        • <span th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd  HH:mm:ss')}"></span>
                     </span>
                 </div>
                 <!--分割线-->
+                <br>
                 <div style="width:100%; height:2px; border-top:1px solid #F4F4F4; clear:both;"></div>
+
             </div>
+
+
+            <!--分页导航条开始-->
+
+            <nav aria-label="Page navigation" style="float: right">
+                <ul class="pagination">
+
+                    <li th:if="${pagination.showFirstPage}">
+                        <a href="" th:href="@{/(page=1)}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;&lt;</span>
+                        </a>
+                    </li>
+
+                    <li th:if="${pagination.showPrevious}">
+                        <a href="" th:href="@{/(page=${pagination.page}-1)}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+
+                    <li th:each="page : ${pagination.pages}"  th:class="${pagination.page==page}?'active'">
+                        <a href="#" th:href="@{/(page=${page})}" th:text="${page}">1</a>
+                    </li>
+
+                    <li th:if="${pagination.showNext}">
+                        <a href="#" th:href="@{/(page=${pagination.page}+1)}" aria-label="Next">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+
+                    <li th:if="${pagination.showEndpage}">
+                        <a href="#" th:href="@{/(page=${pagination.totalPage})}" aria-label="Next">
+                            <span aria-hidden="true">&gt;&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!--分页导航条结束-->
 
         </div>
 
-        <!--右边，发布指南-->
+        <!--右边，热门话题-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="border-left: 1px solid #e6e6e6;">
             <h2>热门话题</h2>
 
         </div>
     </div>
+
+
+
+
+
 </div>
 <!--发起问题结束-->
+
+
 
 </body>
 </html>
