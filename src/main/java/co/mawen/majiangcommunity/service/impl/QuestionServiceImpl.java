@@ -31,16 +31,33 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public PaginationDTO pagination(Integer page, Integer size) {
         Integer totalCount = questionMapper.count();
-        PaginationDTO<Question> questionPaginationDTO = new PaginationDTO<>();
-        questionPaginationDTO.setPagination(page,totalCount,size);
+        PaginationDTO<Question> paginationDTO = new PaginationDTO<>();
+        paginationDTO.setPagination(page,totalCount,size);
         //这里的page还需要经过DTO对象的setPagination()方法进行数据校验
-        page=questionPaginationDTO.getPage();
+        page=paginationDTO.getPage();
         //查询questions
         Map<String,Object> criteria = new HashMap<>();
         criteria.put("offset",(page - 1) * size);
         criteria.put("size",size);
         List<Question> questions = questionMapper.list_user(criteria);
-        questionPaginationDTO.setDataList(questions);
-        return questionPaginationDTO;
+        paginationDTO.setDataList(questions);
+        return paginationDTO;
+    }
+
+    @Override
+    public PaginationDTO pagination(Integer creator, Integer page, Integer size) {
+        Integer totalCount = questionMapper.countByCreator(creator);
+        PaginationDTO<Question> paginationDTO = new PaginationDTO<>();
+        paginationDTO.setPagination(page,totalCount,size);
+        //这里的page还需要经过DTO对象的setPagination()方法进行数据校验
+        page=paginationDTO.getPage();
+        //查询questions
+        Map<String,Object> criteria = new HashMap<>();
+        criteria.put("offset",(page - 1) * size>=0?(page-1)*size:0);
+        criteria.put("size",size);
+        criteria.put("creator",creator);
+        List<Question> questions = questionMapper.list_creator(criteria);
+        paginationDTO.setDataList(questions);
+        return paginationDTO;
     }
 }

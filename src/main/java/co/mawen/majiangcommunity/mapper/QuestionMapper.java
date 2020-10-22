@@ -31,4 +31,16 @@ public interface QuestionMapper {
      * @return
      */
     Integer count();
+
+    /**
+     * 查询所有question关联user
+     * @return
+     */
+    List<Question> list_creator(Map<String,Object> criteria);
+
+    /**
+     * 查询记录数
+     * @return
+     */
+    Integer countByCreator(Integer creator);
 }

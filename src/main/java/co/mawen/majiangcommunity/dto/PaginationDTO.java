@@ -22,12 +22,14 @@ public class PaginationDTO<T> implements Serializable {
     public void setPagination(int page,int totalCount,int size){
         //设置总页数
         this.totalPage=totalCount%size==0?totalCount/size:(totalCount/size + 1);
+
         //设置当前页码数
-        if(page<1){
-            page=1;
-        }
+        //注意totalpage可能为0，这样会使page=0，从而使offset=(page-1)*size是负数，所以最好先验证page>totalpage,再验证page<1
         if(page>totalPage){
             page=totalPage;
+        }
+        if(page<1){
+            page=1;
         }
         this.page=page;
         //设置pages
@@ -44,7 +46,7 @@ public class PaginationDTO<T> implements Serializable {
             }
         }
         //设置showPrevious
-        if(this.page==1){
+        if(this.page<=1){
             this.showPrevious=false;
         }else {
             this.showPrevious=true;

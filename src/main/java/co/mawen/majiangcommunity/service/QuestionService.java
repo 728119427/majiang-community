@@ -29,10 +29,19 @@ public interface QuestionService {
 //   List<Question> list_user();
 
     /**
-     * 分页功能
+     * 主页分页功能
      * @param page
      * @param size
      * @return
      */
     PaginationDTO pagination(Integer page,Integer size);
+
+    /**
+     * 个人页面分页功能
+     * @param creator
+     * @param page
+     * @param size
+     * @return
+     */
+    PaginationDTO pagination(Integer creator,Integer page,Integer size);
 }

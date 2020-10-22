@@ -24,23 +24,10 @@ public class IndexController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request, Model model,
+    public String index( Model model,
                         @RequestParam(value = "page",defaultValue = "1",required = false) Integer page,
                         @RequestParam(value = "size",defaultValue = "7",required = false) Integer size
     ){
-        Cookie[] cookies = request.getCookies();
-        if(cookies!=null){
-            for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("token")){
-                    String value = cookie.getValue();
-                    User user = userService.findByToken(value);
-                    if(user!=null){
-                        request.getSession().setAttribute("user",user);
-                    }
-                    break;
-                }
-            }
-        }
 
         PaginationDTO<Question> pagination = questionService.pagination(page, size);
         model.addAttribute("pagination",pagination);
