@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
@@ -53,9 +54,8 @@ public class AuthorizeController {
             user.setBio(githubUser.getBio());
             String token = UUID.randomUUID().toString().replace("-", "").toUpperCase();
             user.setToken(token);
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(githubUser.getAvatarUrl());
+            user.setGmtModified(System.currentTimeMillis());
             userService.insert(user);
             Cookie tokenCookie = new Cookie("token", token);
             tokenCookie.setMaxAge(604800);//一周有效
@@ -66,5 +66,14 @@ public class AuthorizeController {
             return "redirect:";
         }
 
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,HttpServletResponse response){
+        request.getSession().invalidate();
+        Cookie token = new Cookie("token", null);
+        token.setMaxAge(0);
+        response.addCookie(token);
+        return "redirect:/";
     }
 }

@@ -34,6 +34,7 @@
           <hr>
           <!--表单-->
           <form action="@{/publish}" th:action="@{/publish}" method="post">
+              <input type="hidden" name="id" th:value="${id}">
               <div class="form-group">
                   <label for="exampleInputTitle">问题标题（简单扼要）:</label>
                   <input th:value="${title}" type="text" name="title" class="form-control" id="exampleInputTitle" placeholder="问题标题">

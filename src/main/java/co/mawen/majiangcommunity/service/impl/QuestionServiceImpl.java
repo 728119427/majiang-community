@@ -18,12 +18,18 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void insert(Question question) {
-        questionMapper.insert(question);
+        Integer id = question.getId();
+        if(id==null){
+            question.setGmtCreate(System.currentTimeMillis());
+            questionMapper.insert(question);
+        }else {
+            questionMapper.update(question);
+        }
+
     }
 
     @Override
     public List<Question> list() {
-
         return questionMapper.list();
     }
 
@@ -59,5 +65,10 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questions = questionMapper.list_creator(criteria);
         paginationDTO.setDataList(questions);
         return paginationDTO;
+    }
+
+    @Override
+    public Question getUnionQuestionById(Integer id) {
+        return questionMapper.getUnionQuestionById(id);
     }
 }

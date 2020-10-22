@@ -17,4 +17,17 @@ public interface UserMapper {
      */
 
     User findByToken(String token);
+
+    /**
+     * 根据accountId查询user
+     * @param AccountId
+     * @return
+     */
+    User getByAccountId(Integer AccountId);
+
+    /**
+     * 更新user
+     * @param user
+     */
+    void update(User user);
 }

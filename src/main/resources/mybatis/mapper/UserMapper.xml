@@ -11,4 +11,12 @@
     <select id="findByToken" parameterType="String" resultType="User">
         SELECT * FROM user WHERE token=#{token}
     </select>
+
+    <select id="getByAccountId" parameterType="int" resultType="User">
+        SELECT * FROM user WHERE account_id=#{accountId}
+    </select>
+
+    <update id="update" parameterType="User">
+        UPDATE user SET name=#{name},bio=#{bio},avatar_url=#{avatarUrl},token=#{token} WHERE id=#{id}
+    </update>
 </mapper>

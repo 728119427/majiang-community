@@ -43,4 +43,17 @@ public interface QuestionMapper {
      * @return
      */
     Integer countByCreator(Integer creator);
+
+    /**
+     * 根据id查找问题关联user
+     * @param id
+     * @return
+     */
+    Question getUnionQuestionById(Integer id);
+
+    /**
+     * 更新question
+     * @param question
+     */
+    void update(Question question);
 }

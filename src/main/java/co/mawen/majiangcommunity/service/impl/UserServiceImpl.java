@@ -13,7 +13,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insert(User user) {
-        userMapper.insert(user);
+        User _user = userMapper.getByAccountId(Integer.parseInt(String.valueOf(user.getAccountId())));
+        if(_user==null){
+            user.setGmtCreate(System.currentTimeMillis());
+            userMapper.insert(user);
+        }else {
+            _user.setToken(user.getToken());
+            _user.setName(user.getName());
+            _user.setBio(user.getBio());
+            _user.setAvatarUrl(user.getAvatarUrl());
+            userMapper.update(_user);
+
+        }
+
     }
 
     @Override

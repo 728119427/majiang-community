@@ -44,4 +44,11 @@ public interface QuestionService {
      * @return
      */
     PaginationDTO pagination(Integer creator,Integer page,Integer size);
+
+    /**
+     * 根据id查找问题关联user
+     * @param id
+     * @return
+     */
+    Question getUnionQuestionById(Integer id);
 }
