@@ -19,9 +19,9 @@ public class PaginationDTO<T> implements Serializable {
     private Integer totalPage;
     private List<Integer> pages = new ArrayList<>();//需要在导航条显示的页码
 
-    public void setPagination(int page,int totalCount,int size){
+    public void setPagination(int page,long totalCount,int size){
         //设置总页数
-        this.totalPage=totalCount%size==0?totalCount/size:(totalCount/size + 1);
+        this.totalPage=(int)(totalCount%size==0?totalCount/size:(totalCount/size + 1));
 
         //设置当前页码数
         //注意totalpage可能为0，这样会使page=0，从而使offset=(page-1)*size是负数，所以最好先验证page>totalpage,再验证page<1

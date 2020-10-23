@@ -46,9 +46,21 @@ public interface QuestionService {
     PaginationDTO pagination(Integer creator,Integer page,Integer size);
 
     /**
+     * 测试pageHelper分页
+     * @return
+     */
+    List<Question> unionList(Integer creator);
+
+    /**
      * 根据id查找问题关联user
      * @param id
      * @return
      */
     Question getUnionQuestionById(Integer id);
+
+    /**
+     * 增加阅读数
+     * @param id
+     */
+    void incView(Integer id);
 }

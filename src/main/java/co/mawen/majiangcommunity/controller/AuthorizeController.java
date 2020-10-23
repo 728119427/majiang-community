@@ -55,7 +55,6 @@ public class AuthorizeController {
             String token = UUID.randomUUID().toString().replace("-", "").toUpperCase();
             user.setToken(token);
             user.setAvatarUrl(githubUser.getAvatarUrl());
-            user.setGmtModified(System.currentTimeMillis());
             userService.insert(user);
             Cookie tokenCookie = new Cookie("token", token);
             tokenCookie.setMaxAge(604800);//一周有效

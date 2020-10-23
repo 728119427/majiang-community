@@ -1,10 +1,8 @@
 package co.mawen.majiangcommunity.controller;
 
-import co.mawen.majiangcommunity.interceptor.SystemInterceptor;
 import co.mawen.majiangcommunity.model.Question;
 import co.mawen.majiangcommunity.model.User;
 import co.mawen.majiangcommunity.service.QuestionService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +57,6 @@ public class PublishController {
         question.setDescription(description);
         question.setTitle(title);
         question.setId(id);
-        question.setGmtModified(System.currentTimeMillis());
         questionService.insert(question);
 
         return "redirect:/";

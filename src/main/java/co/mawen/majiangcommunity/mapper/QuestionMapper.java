@@ -1,24 +1,42 @@
 package co.mawen.majiangcommunity.mapper;
 
 import co.mawen.majiangcommunity.model.Question;
-import org.apache.ibatis.annotations.Insert;
-
+import co.mawen.majiangcommunity.model.QuestionExample;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface QuestionMapper {
+    long countByExample(QuestionExample example);
 
-    /**
-     * 插入发布内容
-     * @param question
-     */
-    void insert(Question question);
+    int deleteByExample(QuestionExample example);
 
-    /**
-     * 查所有question
-     * @return
-     */
-    List<Question> list();
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(Question record);
+
+    int insertSelective(Question record);
+
+    List<Question> selectByExampleWithBLOBs(QuestionExample example);
+
+    List<Question> selectByExample(QuestionExample example);
+
+    Question selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByExample(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByPrimaryKeySelective(Question record);
+
+    int updateByPrimaryKeyWithBLOBs(Question record);
+
+    int updateByPrimaryKey(Question record);
+
+    //自己添加的方法============================================================
 
     /**
      * 查询所有question关联user
@@ -26,11 +44,6 @@ public interface QuestionMapper {
      */
     List<Question> list_user(Map<String,Object> criteria);
 
-    /**
-     * 查询记录数
-     * @return
-     */
-    Integer count();
 
     /**
      * 查询所有question关联user
@@ -39,10 +52,10 @@ public interface QuestionMapper {
     List<Question> list_creator(Map<String,Object> criteria);
 
     /**
-     * 查询记录数
+     * 测试pageHelper分页
      * @return
      */
-    Integer countByCreator(Integer creator);
+    List<Question> unionList(Integer creator);
 
     /**
      * 根据id查找问题关联user
@@ -50,10 +63,4 @@ public interface QuestionMapper {
      * @return
      */
     Question getUnionQuestionById(Integer id);
-
-    /**
-     * 更新question
-     * @param question
-     */
-    void update(Question question);
 }

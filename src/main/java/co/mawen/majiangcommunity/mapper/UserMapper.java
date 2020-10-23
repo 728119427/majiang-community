@@ -1,33 +1,30 @@
 package co.mawen.majiangcommunity.mapper;
 
 import co.mawen.majiangcommunity.model.User;
+import co.mawen.majiangcommunity.model.UserExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
+    long countByExample(UserExample example);
 
-    /**
-     * 添加user
-     * @param user
-     */
-    void insert(User user);
+    int deleteByExample(UserExample example);
 
-    /**
-     * 根据token查找user
-     * @param token
-     * @return
-     */
+    int deleteByPrimaryKey(Integer id);
 
-    User findByToken(String token);
+    int insert(User record);
 
-    /**
-     * 根据accountId查询user
-     * @param AccountId
-     * @return
-     */
-    User getByAccountId(Integer AccountId);
+    int insertSelective(User record);
 
-    /**
-     * 更新user
-     * @param user
-     */
-    void update(User user);
+    List<User> selectByExample(UserExample example);
+
+    User selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }

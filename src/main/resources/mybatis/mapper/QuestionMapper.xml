@@ -41,6 +41,10 @@
     <select id="list_creator" resultMap="question_user_map" parameterType="Map" >
        SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id WHERE q.creator=#{creator} LIMIT #{offset},#{size}
     </select>
+    <!--测试pageHelper-->
+    <select id="unionList" resultMap="question_user_map" parameterType="int" >
+       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id WHERE q.creator=#{creator}
+    </select>
 
     <select id="count" resultType="int">
         SELECT COUNT(1) FROM question

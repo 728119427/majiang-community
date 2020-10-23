@@ -1,8 +1,12 @@
 package co.mawen.majiangcommunity.service.impl;
 
 import co.mawen.majiangcommunity.dto.PaginationDTO;
+import co.mawen.majiangcommunity.exception.CustomizeErrorCode;
+import co.mawen.majiangcommunity.exception.CustomizeException;
+import co.mawen.majiangcommunity.mapper.QuestionExtMapper;
 import co.mawen.majiangcommunity.mapper.QuestionMapper;
 import co.mawen.majiangcommunity.model.Question;
+import co.mawen.majiangcommunity.model.QuestionExample;
 import co.mawen.majiangcommunity.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,28 +19,32 @@ import java.util.Map;
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Override
     public void insert(Question question) {
         Integer id = question.getId();
         if(id==null){
             question.setGmtCreate(System.currentTimeMillis());
-            questionMapper.insert(question);
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.insertSelective(question);
         }else {
-            questionMapper.update(question);
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.updateByPrimaryKeySelective(question);
         }
 
     }
 
     @Override
     public List<Question> list() {
-        return questionMapper.list();
+      return questionMapper.selectByExampleWithBLOBs(new QuestionExample());
     }
 
 
     @Override
     public PaginationDTO pagination(Integer page, Integer size) {
-        Integer totalCount = questionMapper.count();
+        Long totalCount = questionMapper.countByExample(new QuestionExample());
         PaginationDTO<Question> paginationDTO = new PaginationDTO<>();
         paginationDTO.setPagination(page,totalCount,size);
         //这里的page还需要经过DTO对象的setPagination()方法进行数据校验
@@ -50,9 +58,18 @@ public class QuestionServiceImpl implements QuestionService {
         return paginationDTO;
     }
 
+    /**
+     * 问题详情页，自定义
+     * @param creator
+     * @param page
+     * @param size
+     * @return
+     */
     @Override
     public PaginationDTO pagination(Integer creator, Integer page, Integer size) {
-        Integer totalCount = questionMapper.countByCreator(creator);
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria().andCreatorEqualTo(creator);
+        long totalCount = questionMapper.countByExample(questionExample);
         PaginationDTO<Question> paginationDTO = new PaginationDTO<>();
         paginationDTO.setPagination(page,totalCount,size);
         //这里的page还需要经过DTO对象的setPagination()方法进行数据校验
@@ -67,8 +84,33 @@ public class QuestionServiceImpl implements QuestionService {
         return paginationDTO;
     }
 
+    /**
+     * 问题详情页，pageHelper
+     * @param id
+     * @return
+     */
     @Override
     public Question getUnionQuestionById(Integer id) {
-        return questionMapper.getUnionQuestionById(id);
+        Question question = questionMapper.getUnionQuestionById(id);
+        //if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND.getMessage());
+        return question;
+    }
+
+    /**
+     * 测试pageHelper
+     * @param creator
+     * @return
+     */
+    @Override
+    public List<Question> unionList(Integer creator) {
+        return questionMapper.unionList(creator);
+    }
+
+    @Override
+    public void incView(Integer id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+        if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND.getMessage());
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

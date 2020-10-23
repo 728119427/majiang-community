@@ -31,7 +31,7 @@
             <h2 th:text="${sectionName}">发现</h2>
             <hr>
             <!--问题列表-->
-            <div class="media" th:each="question : ${pagination.dataList}">
+            <div class="media" th:each="question : ${pageInfo.list}">
                 <!--user-->
                 <div class="media-left">
                     <a href="#">
@@ -58,33 +58,33 @@
 
 
             <!--分页导航条开始-->
-            <nav aria-label="Page navigation" style="float: right" th:if="${pagination.totalPage}>0">
+            <nav aria-label="Page navigation" style="float: right">
                 <ul class="pagination">
 
-                    <li th:if="${pagination.showFirstPage}">
+                    <li th:if="${not pageInfo.isFirstPage}">
                         <a href="" th:href="@{/profile/{section}(page=1,section=${section})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
 
-                    <li th:if="${pagination.showPrevious}">
-                        <a href="" th:href="@{/profile/{section}(page=${pagination.page}-1,section=${section})}" aria-label="Previous">
+                    <li th:if="${pageInfo.hasPreviousPage}">
+                        <a href="" th:href="@{/profile/{section}(page=${pageInfo.pageNum}-1,section=${section})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
-                    <li th:each="page : ${pagination.pages}"  th:class="${pagination.page==page}?'active'">
+                    <li th:each="page : ${pageInfo.navigatepageNums}"  th:class="${pageInfo.pageNum==page}?'active'">
                         <a href="#" th:href="@{/profile/{section}(page=${page},section=${section})}" th:text="${page}">1</a>
                     </li>
 
-                    <li th:if="${pagination.showNext}">
-                        <a href="#" th:href="@{/profile/{section}(page=${pagination.page}+1,section=${section})}" aria-label="Next">
+                    <li th:if="${pageInfo.hasNextPage}">
+                        <a href="#" th:href="@{/profile/{section}(page=${pageInfo.pageNum}+1,section=${section})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
 
-                    <li th:if="${pagination.showEndpage}">
-                        <a href="#" th:href="@{/profile/{section}(page=${pagination.totalPage},section=${section})}" aria-label="Next">
+                    <li th:if="${not pageInfo.isLastPage}">
+                        <a href="#" th:href="@{/profile/{section}(page=${pageInfo.pages},section=${section})}" aria-label="Next">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
