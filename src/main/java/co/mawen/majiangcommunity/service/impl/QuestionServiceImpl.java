@@ -109,7 +109,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void incView(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
-        if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND.getMessage());
+        if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         question.setViewCount(1);
         questionExtMapper.incView(question);
     }

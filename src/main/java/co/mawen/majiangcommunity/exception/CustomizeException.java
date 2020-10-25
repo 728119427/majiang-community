@@ -1,18 +1,20 @@
 package co.mawen.majiangcommunity.exception;
 
 public class CustomizeException extends RuntimeException {
-    public CustomizeException() {
+    private String message;
+    private Integer code;
+
+    public CustomizeException(CustomizeErrorCode customizeErrorCode){
+        this.message=customizeErrorCode.getMessage();
+        this.code=customizeErrorCode.getCode();
     }
 
-    public CustomizeException(String message) {
-        super(message);
+    @Override
+    public String getMessage() {
+        return message;
     }
 
-    public CustomizeException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public CustomizeException(Throwable cause) {
-        super(cause);
+    public Integer getCode() {
+        return code;
     }
 }

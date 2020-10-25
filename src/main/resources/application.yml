@@ -29,6 +29,10 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#  mvc:
+#    hiddenmethod:
+#      filter:
+#        enabled: true
 
 #mybatis配置
 mybatis:
@@ -43,3 +47,4 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+

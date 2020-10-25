@@ -24,7 +24,7 @@ public class ProfileController {
     @GetMapping("/profile/{section}")
     public String profile(@PathVariable("section") String section, HttpServletRequest request, Model model,
                           @RequestParam(value = "page",defaultValue = "1",required = false) Integer page,
-                          @RequestParam(value = "size",defaultValue = "7",required = false) Integer size){
+                          @RequestParam(value = "size",defaultValue = "8",required = false) Integer size){
         if("questions".equals(section)){
             model.addAttribute("section",section);
             model.addAttribute("sectionName","我的问题");

@@ -6,16 +6,18 @@
     <!--引入js-->
     <script src="" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
 
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css}" >
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" >
 
     <!-- 自定义样式 -->
-    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/community.css}" >
+    <link rel="stylesheet" th:href="@{/css/community.css}" >
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}" ></script>
+    <script th:src="@{/js/bootstrap.js}" ></script>
+    <!--引入community.js-->
+    <script src="js/community.js"></script>
 </head>
 
 <body>
@@ -61,7 +63,7 @@
                           </div>
                       </div>
                       <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                          <button type="submit" class="btn btn-success submit ">
+                          <button type="submit" class="btn btn-success submit btn-publish ">
                               发布
                           </button>
                       </div>

@@ -20,7 +20,7 @@ public class IndexController {
     @GetMapping("/")
     public String index( Model model,
                         @RequestParam(value = "page",defaultValue = "1",required = false) Integer page,
-                        @RequestParam(value = "size",defaultValue = "7",required = false) Integer size
+                        @RequestParam(value = "size",defaultValue = "8",required = false) Integer size
     ){
 
         PaginationDTO<Question> pagination = questionService.pagination(page, size);

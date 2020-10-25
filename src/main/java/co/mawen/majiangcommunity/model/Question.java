@@ -1,6 +1,8 @@
 package co.mawen.majiangcommunity.model;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
     private Integer id;
 
     private String title;

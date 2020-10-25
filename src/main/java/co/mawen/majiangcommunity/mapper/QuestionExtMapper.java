@@ -14,4 +14,11 @@ public interface QuestionExtMapper {
      * @param question
      */
     void incView(Question question);
+
+
+    /**
+     * 增加评论数
+     * @param question
+     */
+    void incCommentCount(Question question);
 }

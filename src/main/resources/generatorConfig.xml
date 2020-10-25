@@ -26,7 +26,7 @@
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
-        <!---->
+        <!--类型转换，默认设置-->
         <javaTypeResolver >
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
@@ -46,12 +46,13 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="co.mawen.majiangcommunity.mapper"  targetProject="src/main/java">
         <!-- <property name="enableSubPackages" value="false" />-->
         </javaClientGenerator>
+<!--
 
-        <!--指定表名,生成实体类的名称；table可以指定多个-->
+        &lt;!&ndash;指定表名,生成实体类的名称；table可以指定多个&ndash;&gt;
         <table  tableName="user" domainObjectName="User" >
-            <!--使用驼峰-->
+            &lt;!&ndash;使用驼峰&ndash;&gt;
             <property name="useActualColumnNames" value="false"/>
-            <!--插入后可以返回primarykey值-->
+            &lt;!&ndash;插入后可以返回primarykey值&ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
 
@@ -59,5 +60,13 @@
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
+-->
+
+        <table  tableName="comment" domainObjectName="Comment" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
+
+
     </context>
 </generatorConfiguration>

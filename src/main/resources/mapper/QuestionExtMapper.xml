@@ -31,4 +31,7 @@
     UPDATE question SET view_count=view_count + #{viewCount} WHERE id=#{id}
   </update>
 
+  <update id="incCommentCount" parameterType="Question">
+    UPDATE question SET comment_count=comment_count + #{commentCount} WHERE id=#{id}
+  </update>
 </mapper>
