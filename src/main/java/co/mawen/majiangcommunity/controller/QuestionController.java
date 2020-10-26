@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -25,18 +26,19 @@ public class QuestionController {
     private CommentService commentService;
 
     @GetMapping("/question/{id}")
-    public String question(@PathVariable("id") Integer id, Model model,
+    public String question(@PathVariable("id") Integer id, Model model, HttpServletRequest request,
                            @RequestParam(name = "page",defaultValue = "1",required = false) Integer page,
                            @RequestParam(name = "size",defaultValue = "5",required = false) Integer size){
-
-        questionService.incView(id);
+        String referer = request.getHeader("Referer");
+        System.out.println(referer);
+        if("http://localhost:8080/".equalsIgnoreCase(referer)){
+            questionService.incView(id);
+        }
         Question question = questionService.getUnionQuestionById(id);
         //开始分页
         PageHelper.startPage(page,size);
         List<Comment> comments = commentService.listByQuestionId2(id);
         PageInfo<Comment> pageInfo = new PageInfo<>(comments, 4);
-//        List<CommentDTO> commentDTOList=commentService.listByQuestionId(id);
-//        PageInfo<CommentDTO> pageInfo = new PageInfo<>(commentDTOList, 4);
         model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("question",question);
         return "question";

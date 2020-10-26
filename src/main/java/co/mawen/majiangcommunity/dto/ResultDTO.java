@@ -5,9 +5,18 @@ import co.mawen.majiangcommunity.exception.CustomizeException;
 
 import java.io.Serializable;
 
-public class ResultDTO implements Serializable {
+public class ResultDTO<T> implements Serializable {
     private String message;
     private Integer code;
+    private T data;
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 
     public String getMessage() {
         return message;
@@ -33,6 +42,12 @@ public class ResultDTO implements Serializable {
         this.code = code;
     }
 
+    public ResultDTO(String message, Integer code, T t) {
+        this.message = message;
+        this.code = code;
+        this.data = t;
+    }
+
     public static ResultDTO errorOf(Integer code, String message){
        return new ResultDTO(message,code);
    }
@@ -49,5 +64,7 @@ public class ResultDTO implements Serializable {
         return new ResultDTO("success",200);
    }
 
-
+    public static <T> ResultDTO okOf(T t){
+        return new ResultDTO("success",200,t);
+    }
 }

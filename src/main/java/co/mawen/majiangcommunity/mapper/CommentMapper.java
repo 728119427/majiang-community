@@ -27,7 +27,4 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
-
-    //自己添加得方法
-    List<Comment> unionListByQuestionId(Integer id);
 }

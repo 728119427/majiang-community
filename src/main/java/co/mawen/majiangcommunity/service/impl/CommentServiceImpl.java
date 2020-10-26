@@ -4,10 +4,7 @@ import co.mawen.majiangcommunity.dto.CommentDTO;
 import co.mawen.majiangcommunity.enums.CommentEnum;
 import co.mawen.majiangcommunity.exception.CustomizeErrorCode;
 import co.mawen.majiangcommunity.exception.CustomizeException;
-import co.mawen.majiangcommunity.mapper.CommentMapper;
-import co.mawen.majiangcommunity.mapper.QuestionExtMapper;
-import co.mawen.majiangcommunity.mapper.QuestionMapper;
-import co.mawen.majiangcommunity.mapper.UserMapper;
+import co.mawen.majiangcommunity.mapper.*;
 import co.mawen.majiangcommunity.model.*;
 import co.mawen.majiangcommunity.service.CommentService;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +24,8 @@ public class CommentServiceImpl implements CommentService {
     private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private CommentExtMapper commentExtMapper;
 
     @Override
     public void insert(Comment comment) {
@@ -59,6 +58,9 @@ public class CommentServiceImpl implements CommentService {
                throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
            }
            commentMapper.insertSelective(comment);
+           //增加评论数
+           firstComment.setCommentCount(1);
+           commentExtMapper.incCommentCount(firstComment);
 
        }
 
@@ -68,14 +70,15 @@ public class CommentServiceImpl implements CommentService {
     /**
      * 查询一级评论
      * @param id
+     * @param commentEnum
      * @return
      */
     @Override
-    public List<CommentDTO>  listByQuestionId(Integer id) {
+    public List<CommentDTO> listByParentId(Integer id, CommentEnum commentEnum) {
         CommentExample commentExample = new CommentExample();
-        commentExample.createCriteria().andParentIdEqualTo(Long.parseLong(String.valueOf(id))).andTypeEqualTo(CommentEnum.QUESTION.getCode());
+        commentExample.createCriteria().andParentIdEqualTo(Long.parseLong(String.valueOf(id))).andTypeEqualTo(commentEnum.getCode());
         List<Comment> comments = commentMapper.selectByExample(commentExample);
-        if(comments==null) return new ArrayList<CommentDTO>();
+        if(comments==null || comments.size()==0) return new ArrayList<CommentDTO>();
 
         //获取评论得userId
         Set<Integer> commentatorIds = comments.stream().map(comment -> comment.getCommentator()).collect(Collectors.toSet());
@@ -100,6 +103,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> listByQuestionId2(Integer id) {
-        return commentMapper.unionListByQuestionId(id);
+        return commentExtMapper.unionListByQuestionId(id);
     }
 }

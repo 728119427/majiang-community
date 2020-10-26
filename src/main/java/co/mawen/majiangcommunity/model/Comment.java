@@ -2,9 +2,8 @@ package co.mawen.majiangcommunity.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
 @Data
-public class Comment implements Serializable {
+public class Comment {
     private Long id;
     private Long parentId;
     private Integer type;
@@ -13,5 +12,7 @@ public class Comment implements Serializable {
     private Long gmtCreate;
     private Long gmtModified;
     private Long likeCount;
+    private Integer commentCount;
     private User user;
+
 }

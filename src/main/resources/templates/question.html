@@ -19,6 +19,7 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script th:src="@{/js/bootstrap.js}" ></script>
+<script src="" th:src="@{/js/moment.js}"></script>
 </head>
 
 <body>
@@ -59,12 +60,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
             <textarea style="display:none;" th:text="${question.description}"></textarea>
         </div>
-        <script type="text/javascript">
+       <!-- <script type="text/javascript">
             $(function () {
                 editormd.markdownToHTML("question-view", {});
             });
         </script>
-
+-->
 <!--
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
              th:if="${!#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}"
@@ -91,8 +92,9 @@
         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <span class="question-tag" th:each="tag : ${question.tag.split(',')}">
+<!--            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>-->
             <a th:href="@{/(page=1,tag=${tag})}"
-               th:text="${tag}" class="community-tag"></a>
+               th:text="${tag}" class=" display: inline-block community-tag glyphicon glyphicon-tags"></a>
         </span>
         </div>
 
@@ -130,14 +132,16 @@
                         <span class="glyphicon glyphicon-thumbs-up icon"></span>
                         <span th:data-id="${comment.id}"
                               onclick="collapseComments(this)" class="comment-icon">
-                        <span class="glyphicon glyphicon-comment"></span>
-<!--                        <span th:text="${comment.commentCount}"></span>-->
-                    </span>
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                 <span th:text="${comment.commentCount}"></span>
+                                </span>
                         <span class="pull-right"
                               th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd')}"></span>
                     </div>
-                    <!--二级评论-->
-               <!--     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments"
+
+
+                    <!-- 二级评论,折叠内容！-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments"
                          th:id="${'comment-'+comment.id}">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <input type="text" class="form-control" placeholder="评论一下……"
@@ -146,7 +150,7 @@
                                     th:data-id="${comment.id}">评论
                             </button>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -156,13 +160,13 @@
     <nav aria-label="Page navigation " style="float:right;" th:if="${pageInfo.pages}>1">
         <ul class="pagination pagination-sm" style="margin-top: 0;margin-bottom: 0">
 
-            <li th:if="${not pageInfo.isFirstPage}">
+            <li th:if="${not pageInfo.isFirstPage and pageInfo.pages>4}">
                 <a href="" th:href="@{/question/{id}(page=1,id=${question.id})}" aria-label="Previous">
                     <span aria-hidden="true">&lt;&lt;</span>
                 </a>
             </li>
 
-            <li th:if="${pageInfo.hasPreviousPage}">
+            <li th:if="${pageInfo.hasPreviousPage }">
                 <a href="" th:href="@{/question/{id}(page=${pageInfo.pageNum}-1,id=${question.id})}" aria-label="Previous">
                     <span aria-hidden="true">&lt;</span>
                 </a>
@@ -172,13 +176,13 @@
                 <a href="#" th:href="@{/question/{id}(page=${page},id=${question.id})}" th:text="${page}">1</a>
             </li>
 
-            <li th:if="${pageInfo.hasNextPage}">
+            <li th:if="${pageInfo.hasNextPage }">
                 <a href="#" th:href="@{/question/{id}(page=${pageInfo.pageNum}+1,id=${question.id})}" aria-label="Next">
                     <span aria-hidden="true">&gt;</span>
                 </a>
             </li>
 
-            <li th:if="${not pageInfo.isLastPage}">
+            <li th:if="${not pageInfo.isLastPage and pageInfo.pages>4}">
                 <a href="#" th:href="@{/question/{id}(page=${pageInfo.pages},id=${question.id})}" aria-label="Next">
                     <span aria-hidden="true">&gt;&gt;</span>
                 </a>
@@ -190,7 +194,7 @@
 
 
     <!--回复输入框-->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="reply">
         <h4>
             提交回复
         </h4>

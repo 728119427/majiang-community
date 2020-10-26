@@ -1,6 +1,7 @@
 package co.mawen.majiangcommunity.service;
 
 import co.mawen.majiangcommunity.dto.CommentDTO;
+import co.mawen.majiangcommunity.enums.CommentEnum;
 import co.mawen.majiangcommunity.model.Comment;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +19,10 @@ public interface CommentService {
     /**
      * 根据id查询comment
      * @param id
+     * @param code
      * @return
      */
-    List<CommentDTO> listByQuestionId(Integer id);
+    List<CommentDTO> listByParentId(Integer id, CommentEnum commentEnum);
 
     /**
      * pageHelper分页用

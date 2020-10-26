@@ -21,4 +21,5 @@ public interface QuestionExtMapper {
      * @param question
      */
     void incCommentCount(Question question);
+
 }
