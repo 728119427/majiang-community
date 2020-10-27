@@ -359,19 +359,19 @@
   <!--==========================自己的方法实现========================================================-->
   <!--查找所有questions-->
   <select id="list_user" resultMap="ResultMapWithBLOBs" parameterType="Map" >
-       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id ORDER BY q.id DESC LIMIT #{offset},#{size}
+       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.id ORDER BY q.id DESC LIMIT #{offset},#{size}
     </select>
 <!--根据creator查找questions-->
   <select id="list_creator" resultMap="ResultMapWithBLOBs" parameterType="Map" >
-       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id WHERE q.creator=#{creator} ORDER BY q.id DESC LIMIT #{offset},#{size}
+       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.id WHERE q.creator=#{creator} ORDER BY q.id DESC LIMIT #{offset},#{size}
     </select>
 
   <!--测试pageHelper 根据creator查找questions-->
   <select id="unionList" resultMap="ResultMapWithBLOBs" parameterType="int" >
-       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id WHERE q.creator=#{creator} ORDER BY q.id DESC
+       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.id WHERE q.creator=#{creator} ORDER BY q.id DESC
     </select>
 <!--问题详情页用-->
   <select id="getUnionQuestionById" parameterType="int" resultMap="ResultMapWithBLOBs">
-       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.account_id WHERE q.id=#{id}
+       SELECT q.* ,u.avatar_url,u.name,u.bio,u.account_id FROM question q LEFT OUTER JOIN user u ON q.creator=u.id WHERE q.id=#{id}
     </select>
 </mapper>

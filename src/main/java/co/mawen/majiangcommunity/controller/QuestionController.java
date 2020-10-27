@@ -35,10 +35,12 @@ public class QuestionController {
             questionService.incView(id);
         }
         Question question = questionService.getUnionQuestionById(id);
+        List<Question> relatedQues = questionService.selectRelatedQues(question);
         //开始分页
         PageHelper.startPage(page,size);
         List<Comment> comments = commentService.listByQuestionId2(id);
         PageInfo<Comment> pageInfo = new PageInfo<>(comments, 4);
+        model.addAttribute("relatedQuestions",relatedQues);
         model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("question",question);
         return "question";

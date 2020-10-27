@@ -1,6 +1,7 @@
 package co.mawen.majiangcommunity.interceptor;
 
 import co.mawen.majiangcommunity.model.User;
+import co.mawen.majiangcommunity.service.NotificationService;
 import co.mawen.majiangcommunity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SystemInterceptor implements HandlerInterceptor {
     @Autowired
     private UserService userService;
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -23,6 +26,8 @@ public class SystemInterceptor implements HandlerInterceptor {
                     String value = cookie.getValue();
                     User user = userService.findByToken(value);
                     if(user!=null){
+                        Long unreadCount = notificationService.unReadCount(user.getId());
+                        request.getSession().setAttribute("unreadCount",unreadCount);
                         request.getSession().setAttribute("user",user);
                     }
                     break;

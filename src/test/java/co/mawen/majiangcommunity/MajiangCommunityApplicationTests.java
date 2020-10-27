@@ -9,7 +9,9 @@ import co.mawen.majiangcommunity.service.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +39,8 @@ class MajiangCommunityApplicationTests {
 
     @Test
     public void fun2(){
-        System.out.println(CustomizeErrorCode.QUESTION_NOT_FOUND.getMessage());
+        String[] split = StringUtils.split("a,b,c,d,e", ",");
+        System.out.println(Arrays.toString(split));
     }
 
 }

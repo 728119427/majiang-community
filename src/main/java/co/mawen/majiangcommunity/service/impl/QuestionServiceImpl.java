@@ -10,10 +10,10 @@ import co.mawen.majiangcommunity.model.QuestionExample;
 import co.mawen.majiangcommunity.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -54,6 +54,9 @@ public class QuestionServiceImpl implements QuestionService {
         criteria.put("offset",(page - 1) * size);
         criteria.put("size",size);
         List<Question> questions = questionMapper.list_user(criteria);
+        if (questions==null || questions.size()==0){
+            questions=new ArrayList<>();
+        }
         paginationDTO.setDataList(questions);
         return paginationDTO;
     }
@@ -112,5 +115,16 @@ public class QuestionServiceImpl implements QuestionService {
         if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         question.setViewCount(1);
         questionExtMapper.incView(question);
+    }
+
+    @Override
+    public List<Question> selectRelatedQues(Question question) {
+        String tag = question.getTag();
+        String[] tags = tag.split(",");
+        String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Question _question = new Question();
+        _question.setTag(regexpTag);
+        _question.setId(question.getId());
+        return questionExtMapper.selectRelatedQues(_question);
     }
 }

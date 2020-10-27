@@ -22,4 +22,10 @@ public interface QuestionExtMapper {
      */
     void incCommentCount(Question question);
 
+    /**
+     * 查询相关问题
+     * @return
+     */
+    List<Question> selectRelatedQues(Question question);
+
 }

@@ -89,17 +89,16 @@
         </div>-->
 
         <!--标签-->
-        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 5px">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <span class="question-tag" th:each="tag : ${question.tag.split(',')}">
-<!--            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>-->
             <a th:href="@{/(page=1,tag=${tag})}"
-               th:text="${tag}" class=" display: inline-block community-tag glyphicon glyphicon-tags"></a>
-        </span>
+               th:text="${'「'+tag+'」'}" class=" community-tag glyphicon glyphicon-tags"></a>
+        </span> 
         </div>
 
         <!--编辑-->
-        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <a th:href="@{'/publish/'+${question.id}}" class="community-menu"
                th:if="${session.user != null && session.user.accountId == question.creator}">
@@ -239,19 +238,25 @@
             </div>
         </div>
     </div>
+
+    <!--码问官方公众号-->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 side" style="margin-top: 40px">
+        <h4>官方微信</h4>
+        <img class="img-thumbnail question-wechat" src="/images/official-account.png">
+    </div>
 <!--                <div th:insert="~{notice :: notice}"></div>-->
 <!--                <div th:insert="~{side :: side}"></div>-->
     <!--相关问题-->
     <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-<!--    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <h4>相关问题</h4>
         <ul class="question-related">
             <li th:each="related : ${relatedQuestions}">
                 <a th:href="@{'/question/'+ ${related.id}}" th:text="${related.title}"></a>
             </li>
         </ul>
-    </div>-->
+    </div>
 </div>
 </div>
 </div>

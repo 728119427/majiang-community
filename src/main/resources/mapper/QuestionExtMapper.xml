@@ -34,4 +34,8 @@
   <update id="incCommentCount" parameterType="Question">
     UPDATE question SET comment_count=comment_count + #{commentCount} WHERE id=#{id}
   </update>
+
+  <select id="selectRelatedQues" parameterType="Question" resultType="Question">
+    select id,title from question where tag regexp #{tag} AND id !=#{id} ORDER BY view_count DESC LIMIT 0,14;
+  </select>
 </mapper>

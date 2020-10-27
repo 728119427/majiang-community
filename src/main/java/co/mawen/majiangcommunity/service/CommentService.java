@@ -3,6 +3,7 @@ package co.mawen.majiangcommunity.service;
 import co.mawen.majiangcommunity.dto.CommentDTO;
 import co.mawen.majiangcommunity.enums.CommentEnum;
 import co.mawen.majiangcommunity.model.Comment;
+import co.mawen.majiangcommunity.model.User;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,8 +14,9 @@ public interface CommentService {
     /**
      * 添加评论
      * @param comment
+     * @param user
      */
-    void insert(Comment comment);
+    void insert(Comment comment, User user);
 
     /**
      * 根据id查询comment

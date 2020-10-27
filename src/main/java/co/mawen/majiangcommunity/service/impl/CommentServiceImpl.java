@@ -2,6 +2,7 @@ package co.mawen.majiangcommunity.service.impl;
 
 import co.mawen.majiangcommunity.dto.CommentDTO;
 import co.mawen.majiangcommunity.enums.CommentEnum;
+import co.mawen.majiangcommunity.enums.NotifiactionTypeEnum;
 import co.mawen.majiangcommunity.exception.CustomizeErrorCode;
 import co.mawen.majiangcommunity.exception.CustomizeException;
 import co.mawen.majiangcommunity.mapper.*;
@@ -26,9 +27,11 @@ public class CommentServiceImpl implements CommentService {
     private UserMapper userMapper;
     @Autowired
     private CommentExtMapper commentExtMapper;
+    @Autowired
+    private NotificationMapper notificationMapper;
 
     @Override
-    public void insert(Comment comment) {
+    public void insert(Comment comment, User user) {
         Long parentId = comment.getParentId();
         Integer type = comment.getType();
         //未针对任何问题或评论进行回复
@@ -50,18 +53,44 @@ public class CommentServiceImpl implements CommentService {
            commentMapper.insertSelective(comment);
            question.setCommentCount(1);
            questionExtMapper.incCommentCount(question);
-
+           //插入通知,你进行了评论也就生成了一条通知，通知的发起人就是你这个评论者
+           Notification notification = new Notification();
+           notification.setGmtCreate(System.currentTimeMillis());
+           notification.setNotifier(Long.parseLong(String.valueOf(user.getId())));
+           notification.setNotifierName(user.getName());
+           notification.setOuterid(Long.parseLong(String.valueOf(question.getId())));
+           notification.setOuterTitle(question.getTitle());
+           notification.setReceiver(Long.parseLong(String.valueOf(question.getCreator())));
+           notification.setType(NotifiactionTypeEnum.REPLY_QUESTION.getType());
+            notificationMapper.insertSelective(notification);
        }else {
            //针对评论回复
            Comment firstComment = commentMapper.selectByPrimaryKey(parentId);
            if(firstComment==null){
                throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
            }
+           //查询一级评论所对应的问题
+           Question question = questionMapper.selectByPrimaryKey(Integer.parseInt(String.valueOf(firstComment.getParentId())));
+           if(question==null){
+               throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+           }
+           //插入评论
            commentMapper.insertSelective(comment);
            //增加评论数
            firstComment.setCommentCount(1);
            commentExtMapper.incCommentCount(firstComment);
 
+
+           //插入通知
+           Notification notification = new Notification();
+           notification.setGmtCreate(System.currentTimeMillis());
+           notification.setNotifier(Long.parseLong(String.valueOf(user.getId())));
+           notification.setNotifierName(user.getName());
+           notification.setOuterid(Long.parseLong(String.valueOf(question.getId())));
+           notification.setOuterTitle(question.getTitle());
+           notification.setReceiver(Long.parseLong(String.valueOf(firstComment.getCommentator())));
+           notification.setType(NotifiactionTypeEnum.REPLY_COMMENT.getType());
+           notificationMapper.insertSelective(notification);
        }
 
     }

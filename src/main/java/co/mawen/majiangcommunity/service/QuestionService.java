@@ -63,4 +63,10 @@ public interface QuestionService {
      * @param id
      */
     void incView(Integer id);
+
+    /**
+     * 查询相关问题
+     * @return
+     */
+    List<Question> selectRelatedQues(Question question);
 }

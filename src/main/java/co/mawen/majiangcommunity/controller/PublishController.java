@@ -1,5 +1,6 @@
 package co.mawen.majiangcommunity.controller;
 
+import co.mawen.majiangcommunity.cache.TagCache;
 import co.mawen.majiangcommunity.model.Question;
 import co.mawen.majiangcommunity.model.User;
 import co.mawen.majiangcommunity.service.QuestionService;
@@ -19,14 +20,26 @@ public class PublishController {
     private QuestionService questionService;
 
     @GetMapping("/publish")
-    public String publish(){
+    public String publish(Model model){
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
+    /**
+     * 发布或编辑
+     * @param title
+     * @param description
+     * @param tag
+     * @param model
+     * @param request
+     * @param id
+     * @return
+     */
     @PostMapping("/publish")
     public String doPublish(String title, String description, String tag,
                             Model model, HttpServletRequest request,
                             Integer id){
+        model.addAttribute("tags", TagCache.get());
         User user = (User) request.getSession().getAttribute("user");
         if(user==null){
             model.addAttribute("error","请先登录！");
@@ -51,8 +64,14 @@ public class PublishController {
             return "publish";
         }
 
+        String invaildTag = TagCache.filterInvalid(tag);
+        if(!StringUtils.isEmpty(invaildTag)){
+            model.addAttribute("error","不正确的标签："+invaildTag);
+            return "publish";
+        }
+
         Question question = new Question();
-        question.setCreator(Integer.parseInt(String.valueOf(user.getAccountId())));
+        question.setCreator(Integer.parseInt(String.valueOf(user.getId())));
         question.setTag(tag);
         question.setDescription(description);
         question.setTitle(title);
@@ -62,13 +81,21 @@ public class PublishController {
         return "redirect:/";
     }
 
+    /**
+     * 编辑回显
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Integer id, Model model){
+
         Question question = questionService.getUnionQuestionById(id);
         model.addAttribute("title",question.getTitle());
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
         model.addAttribute("id",id);
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 }
