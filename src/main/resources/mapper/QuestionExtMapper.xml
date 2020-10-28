@@ -38,4 +38,23 @@
   <select id="selectRelatedQues" parameterType="Question" resultType="Question">
     select id,title from question where tag regexp #{tag} AND id !=#{id} ORDER BY view_count DESC LIMIT 0,14;
   </select>
+  <!--根据条件查找总数-->
+  <select id="countBySearch" parameterType="co.mawen.majiangcommunity.dto.QuestionQueryDTO" resultType="Long">
+        SELECT COUNT(*) FROM question
+        <where>
+          <if test="search!=null">
+            AND TITLE regexp #{search}
+          </if>
+        </where>
+  </select>
+
+  <select id="selectBySearch" parameterType="co.mawen.majiangcommunity.dto.QuestionQueryDTO" resultMap="BaseResultMap">
+    SELECT * FROM question q INNER JOIN user u ON q.creator=u.id
+    <where>
+      <if test="search!=null">
+        AND TITLE regexp #{search}
+      </if>
+    </where>
+    ORDER BY q.gmt_create DESC LIMIT #{offset},#{size}
+  </select>
 </mapper>

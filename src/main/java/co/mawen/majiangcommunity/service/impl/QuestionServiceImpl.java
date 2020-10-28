@@ -1,6 +1,7 @@
 package co.mawen.majiangcommunity.service.impl;
 
 import co.mawen.majiangcommunity.dto.PaginationDTO;
+import co.mawen.majiangcommunity.dto.QuestionQueryDTO;
 import co.mawen.majiangcommunity.exception.CustomizeErrorCode;
 import co.mawen.majiangcommunity.exception.CustomizeException;
 import co.mawen.majiangcommunity.mapper.QuestionExtMapper;
@@ -42,18 +43,34 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
 
+    /**
+     * 主页分页
+     * @param search
+     * @param page
+     * @param size
+     * @return
+     */
     @Override
-    public PaginationDTO pagination(Integer page, Integer size) {
-        Long totalCount = questionMapper.countByExample(new QuestionExample());
+    public PaginationDTO pagination(String search,Integer page, Integer size) {
+        if(!StringUtils.isEmpty(search)){
+            String[] split = search.split(" ");
+            search = Arrays.stream(split).collect(Collectors.joining("|"));
+        }else {
+            search=null;
+        }
+
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Long totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         PaginationDTO<Question> paginationDTO = new PaginationDTO<>();
         paginationDTO.setPagination(page,totalCount,size);
         //这里的page还需要经过DTO对象的setPagination()方法进行数据校验
         page=paginationDTO.getPage();
         //查询questions
         Map<String,Object> criteria = new HashMap<>();
-        criteria.put("offset",(page - 1) * size);
-        criteria.put("size",size);
-        List<Question> questions = questionMapper.list_user(criteria);
+        questionQueryDTO.setPage(page);
+        questionQueryDTO.setSize(size);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         if (questions==null || questions.size()==0){
             questions=new ArrayList<>();
         }

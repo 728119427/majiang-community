@@ -9,8 +9,10 @@ import co.mawen.majiangcommunity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,11 +28,14 @@ public class IndexController {
     @GetMapping("/")
     public String index( Model model,
                         @RequestParam(value = "page",defaultValue = "1",required = false) Integer page,
-                        @RequestParam(value = "size",defaultValue = "8",required = false) Integer size
+                        @RequestParam(value = "size",defaultValue = "8",required = false) Integer size,
+                        @RequestParam(value = "search",required = false) String search
     ){
 
-        PaginationDTO<Question> pagination = questionService.pagination(page, size);
+        PaginationDTO<Question> pagination = questionService.pagination(search,page, size);
         model.addAttribute("pagination",pagination);
+            model.addAttribute("search",search);
+
         return "index";
     }
 }

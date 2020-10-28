@@ -32,9 +32,10 @@ public interface QuestionService {
      * 主页分页功能
      * @param page
      * @param size
+     * @param search
      * @return
      */
-    PaginationDTO pagination(Integer page,Integer size);
+    PaginationDTO pagination(String search,Integer page,Integer size);
 
     /**
      * 个人页面分页功能

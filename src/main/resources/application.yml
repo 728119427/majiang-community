@@ -48,3 +48,25 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
+#文件上传配置
+ucloud:
+  ufile:
+    public-key: TOKEN_2a5b652a-797e-408a-955a-df6fde58a2d1
+    private-key:  135ad8af-1227-4467-b809-012ba0fb9078
+    bucket-name: seven
+    region: cn-bj
+    suffix: ufileos.com
+    expires:  8640000
+
+logging:
+  file:
+    path: log/
+    max-size: 200MB
+    max-history: 30
+  level:
+    root: info
+    co:
+      mawen:
+        majiangcommunity:
+          mapper: debug
+#日志配置
