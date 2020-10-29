@@ -6153,3 +6153,38 @@ Caused by: java.sql.SQLException: sql injection violation, comment not allow : C
 2020-10-29 17:10:00.534  INFO 88560 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
 2020-10-29 17:21:10.156  INFO 88560 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 >>>>>>> 04cd0d297d986a8bf41148026b795ef665216e04
+2020-10-29 17:35:16.630  INFO 88812 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 88812 (/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/majiang-community)
+2020-10-29 17:35:16.632  INFO 88812 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
+2020-10-29 17:35:19.627  INFO 88812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-10-29 17:35:19.666  INFO 88812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-10-29 17:35:19.667  INFO 88812 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-29 17:35:19.826  INFO 88812 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-10-29 17:35:19.827  INFO 88812 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3074 ms
+2020-10-29 17:35:22.329  INFO 88812 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-29 17:35:22.556  INFO 88812 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-10-29 17:35:22.980  INFO 88812 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-10-29 17:35:23.793  INFO 88812 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://10.9.47.186:3306/community (MySQL 5.6)
+2020-10-29 17:35:24.095  INFO 88812 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 10 migrations (execution time 00:00.093s)
+2020-10-29 17:35:24.182  INFO 88812 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `community`: 6
+2020-10-29 17:35:24.185  INFO 88812 --- [main] o.f.core.internal.command.DbMigrate      : Schema `community` is up to date. No migration necessary.
+2020-10-29 17:35:24.494  INFO 88812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-10-29 17:35:24.523  INFO 88812 --- [main] c.m.m.MajiangCommunityApplication        : Started MajiangCommunityApplication in 8.991 seconds (JVM running for 9.984)
+2020-10-29 17:35:37.181  INFO 88812 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-29 17:35:37.181  INFO 88812 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-10-29 17:35:37.202  INFO 88812 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 21 ms
+2020-10-29 17:48:28.513  INFO 88812 --- [http-nio-80-exec-4] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [;sh+/tmp/gpon80&ipv=...]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:413) ~[tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:261) ~[tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) [tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_271]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_271]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.38.jar!/:9.0.38]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_271]
+
+2020-10-29 17:56:25.086  INFO 88812 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
