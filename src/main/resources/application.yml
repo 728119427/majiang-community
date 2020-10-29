@@ -1,3 +1,6 @@
+server:
+    port: 8080
+
 #github
 github:
   client:
@@ -61,7 +64,7 @@ ucloud:
 logging:
   file:
     path: log/
-    max-size: 200MB
+    max-size: 100MB
     max-history: 30
   level:
     root: info
@@ -69,4 +72,5 @@ logging:
       mawen:
         majiangcommunity:
           mapper: debug
+
 #日志配置
