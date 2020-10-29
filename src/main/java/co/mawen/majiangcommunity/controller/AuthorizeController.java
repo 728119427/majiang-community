@@ -36,9 +36,9 @@ public class AuthorizeController {
     public String callback(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletResponse response){
         //获取code用于交换access_token
         GithubDTO githubDTO = new GithubDTO();
-        githubDTO.setClient_id("f4e182db283dfd9e81ac");
-        githubDTO.setClient_secret("6ceb76dd3a8ece11ce0aae2e994fadc37592de3d");
-        githubDTO.setRedirect_uri("http://localhost:8080/callback");
+        githubDTO.setClient_id(clientId);
+        githubDTO.setClient_secret(clientSecret);
+        githubDTO.setRedirect_uri(redirectUri);
         githubDTO.setCode(code);
         githubDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(githubDTO);
