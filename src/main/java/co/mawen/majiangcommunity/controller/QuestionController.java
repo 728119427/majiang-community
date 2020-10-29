@@ -9,6 +9,7 @@ import co.mawen.majiangcommunity.service.QuestionService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +25,15 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private CommentService commentService;
+    @Value("incView.referer")
+    private String referer;
 
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Integer id, Model model, HttpServletRequest request,
                            @RequestParam(name = "page",defaultValue = "1",required = false) Integer page,
                            @RequestParam(name = "size",defaultValue = "5",required = false) Integer size){
-        String referer = request.getHeader("Referer");
-        System.out.println(referer);
-        if("http://localhost:8080/".equalsIgnoreCase(referer)){
+        String localReferer = request.getHeader("Referer");
+        if(localReferer.equalsIgnoreCase(referer)){
             questionService.incView(id);
         }
         Question question = questionService.getUnionQuestionById(id);

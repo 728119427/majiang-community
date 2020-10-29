@@ -61,6 +61,7 @@ ucloud:
     suffix: ufileos.com
     expires:  8640000
 
+#日志配置
 logging:
   file:
     path: log/
@@ -72,5 +73,8 @@ logging:
   #    mawen:
         #majiangcommunity:
          # mapper: debug
+#自定义参数配置
+incView:
+  referer: http://117.50.63.69/
 
-#日志配置
+
