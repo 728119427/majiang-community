@@ -25,7 +25,7 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private CommentService commentService;
-    @Value("incView.referer")
+    @Value("${incView.referer}")
     private String referer;
 
     @GetMapping("/question/{id}")
