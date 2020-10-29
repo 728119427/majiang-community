@@ -5932,3 +5932,221 @@ Caused by: java.sql.SQLException: sql injection violation, comment not allow : C
 	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:189) ~[flyway-core-5.2.4.jar!/:na]
 	... 39 common frames omitted
 
+2020-10-29 16:57:42.377  INFO 88231 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 88231 (/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/majiang-community)
+2020-10-29 16:57:42.379  INFO 88231 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
+2020-10-29 16:57:45.255  INFO 88231 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-10-29 16:57:45.281  INFO 88231 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-10-29 16:57:45.281  INFO 88231 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-29 16:57:45.409  INFO 88231 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-10-29 16:57:45.409  INFO 88231 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2899 ms
+2020-10-29 16:57:47.645  INFO 88231 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-29 16:57:47.856  INFO 88231 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-10-29 16:57:48.240  INFO 88231 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-10-29 16:57:49.253  INFO 88231 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://10.9.47.186:3306/community (MySQL 5.6)
+2020-10-29 16:57:49.499  INFO 88231 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 10 migrations (execution time 00:00.076s)
+2020-10-29 16:57:49.571  INFO 88231 --- [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table: `community`.`flyway_schema_history`
+2020-10-29 16:57:58.873  WARN 88231 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: 
+Migration createMetaDataTable.sql failed
+----------------------------------------
+SQL State  : null
+Error Code : 0
+Message    : sql injection violation, comment not allow : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+Location   : org/flywaydb/core/internal/database/mysql/createMetaDataTable.sql (/App/majiang-community/file:/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/flyway-core-5.2.4.jar!/org/flywaydb/core/internal/database/mysql/createMetaDataTable.sql)
+Line       : 17
+Statement  : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+
+2020-10-29 16:57:58.874  INFO 88231 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-29 16:57:58.922  INFO 88231 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-10-29 16:57:58.981  INFO 88231 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-10-29 16:57:58.988 ERROR 88231 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: 
+Migration createMetaDataTable.sql failed
+----------------------------------------
+SQL State  : null
+Error Code : 0
+Message    : sql injection violation, comment not allow : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+Location   : org/flywaydb/core/internal/database/mysql/createMetaDataTable.sql (/App/majiang-community/file:/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/flyway-core-5.2.4.jar!/org/flywaydb/core/internal/database/mysql/createMetaDataTable.sql)
+Line       : 17
+Statement  : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1794) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:311) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879) ~[spring-context-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551) ~[spring-context-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758) [spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750) [spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) [spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at co.mawen.majiangcommunity.MajiangCommunityApplication.main(MajiangCommunityApplication.java:12) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_271]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_271]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_271]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_271]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49) [majiang-community-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [majiang-community-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [majiang-community-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88) [majiang-community-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: 
+Migration createMetaDataTable.sql failed
+----------------------------------------
+SQL State  : null
+Error Code : 0
+Message    : sql injection violation, comment not allow : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+Location   : org/flywaydb/core/internal/database/mysql/createMetaDataTable.sql (/App/majiang-community/file:/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/flyway-core-5.2.4.jar!/org/flywaydb/core/internal/database/mysql/createMetaDataTable.sql)
+Line       : 17
+Statement  : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:253) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:202) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:125) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory$1.call(JdbcTableSchemaHistory.java:132) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.jdbc.TransactionTemplate.execute(TransactionTemplate.java:74) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.create(JdbcTableSchemaHistory.java:125) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:127) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1395) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:1356) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1711) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1356) ~[flyway-core-5.2.4.jar!/:na]
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:65) ~[spring-boot-autoconfigure-2.3.4.RELEASE.jar!/:2.3.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1790) ~[spring-beans-5.2.9.RELEASE.jar!/:5.2.9.RELEASE]
+	... 27 common frames omitted
+Caused by: java.sql.SQLException: sql injection violation, comment not allow : CREATE TABLE `community`.`flyway_schema_history` (
+    `installed_rank` INT NOT NULL,
+    `version` VARCHAR(50),
+    `description` VARCHAR(200) NOT NULL,
+    `type` VARCHAR(20) NOT NULL,
+    `script` VARCHAR(1000) NOT NULL,
+    `checksum` INT,
+    `installed_by` VARCHAR(100) NOT NULL,
+    `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `execution_time` INT NOT NULL,
+    `success` BOOL NOT NULL,
+    -- Add the primary key as part of the CREATE TABLE statement in case `innodb_force_primary_key` is enabled
+    CONSTRAINT `flyway_schema_history_pk`PRIMARY KEY (`installed_rank`)
+) ENGINE=InnoDB
+	at com.alibaba.druid.wall.WallFilter.check(WallFilter.java:714) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.wall.WallFilter.statement_execute(WallFilter.java:384) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.filter.FilterChainImpl.statement_execute(FilterChainImpl.java:2487) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.filter.FilterAdapter.statement_execute(FilterAdapter.java:2451) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_execute(FilterEventAdapter.java:188) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.filter.FilterChainImpl.statement_execute(FilterChainImpl.java:2487) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.proxy.jdbc.StatementProxyImpl.execute(StatementProxyImpl.java:137) ~[druid-1.0.9.jar!/:1.0.9]
+	at com.alibaba.druid.pool.DruidPooledStatement.execute(DruidPooledStatement.java:421) ~[druid-1.0.9.jar!/:1.0.9]
+	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:235) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.sqlscript.StandardSqlStatement.execute(StandardSqlStatement.java:42) ~[flyway-core-5.2.4.jar!/:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:189) ~[flyway-core-5.2.4.jar!/:na]
+	... 39 common frames omitted
+
+2020-10-29 17:09:12.094  INFO 88560 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 88560 (/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/majiang-community)
+2020-10-29 17:09:12.096  INFO 88560 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
+2020-10-29 17:09:15.062  INFO 88560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-10-29 17:09:15.091  INFO 88560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-10-29 17:09:15.091  INFO 88560 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-29 17:09:15.235  INFO 88560 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-10-29 17:09:15.236  INFO 88560 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3009 ms
+2020-10-29 17:09:17.378  INFO 88560 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-29 17:09:17.586  INFO 88560 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-10-29 17:09:17.973  INFO 88560 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-10-29 17:09:19.105  INFO 88560 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://10.9.47.186:3306/community (MySQL 5.6)
+2020-10-29 17:09:19.343  INFO 88560 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 10 migrations (execution time 00:00.105s)
+2020-10-29 17:09:19.404  INFO 88560 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `community`: 6
+2020-10-29 17:09:19.409  INFO 88560 --- [main] o.f.core.internal.command.DbMigrate      : Schema `community` is up to date. No migration necessary.
+2020-10-29 17:09:19.818  INFO 88560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-10-29 17:09:19.859  INFO 88560 --- [main] c.m.m.MajiangCommunityApplication        : Started MajiangCommunityApplication in 8.941 seconds (JVM running for 9.834)
+2020-10-29 17:10:00.515  INFO 88560 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-29 17:10:00.515  INFO 88560 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-10-29 17:10:00.534  INFO 88560 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2020-10-29 17:21:10.156  INFO 88560 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
