@@ -2,21 +2,8 @@
 <html lang="en"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <!--引入js-->
-    <script src="" th:src="@{/js/jquery-3.4.1.min.js}"></script>
-
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" >
-
-    <!-- 自定义样式 -->
-    <link rel="stylesheet" th:href="@{/css/community.css}" >
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script th:src="@{/js/bootstrap.js}" ></script>
+    <title>个人空间</title>
+    <div th:insert="~{import::head}"></div>
 </head>
 
 <body>
@@ -116,6 +103,6 @@
     </div>
 </div>
 
-<div class="footer">Copyright © 2020  ICP备000000号 · 服务器赞助: <a href="https://passport.ucloud.cn/?invitation_code=nmtbj0lvttvx&ytag=re01B1">UCloud</a> · All Rights Reserved Powered By <a href="http://www.seven.co" target="_blank"> 涩问社区 </a></div>
+<div class="footer">Copyright © 2020  ICP备000000号 · 服务器赞助: <a href="https://passport.ucloud.cn/?invitation_code=nmtbj0lvttvx&ytag=re01B1">UCloud</a> · All Rights Reserved Powered By <a href="http://www.dadiaoyuan.com" target="_blank"> 涩问社区 </a></div>
 </body>
 </html>

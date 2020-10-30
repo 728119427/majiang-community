@@ -2,21 +2,10 @@
 <html lang="en"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <!--引入js-->
-    <script src="" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <title>涩问社区</title>
 
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" >
-
-    <!-- 自定义样式 -->
-    <link rel="stylesheet" th:href="@{/css/community.css}" >
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script th:src="@{/js/bootstrap.js}" ></script>
+<div th:insert="~{import::head}"></div>
+<!--    <link rel="shortcut icon" href="/images/logos/favicon.ico">-->
     <script type="application/javascript">
         window.onload = function () {
             var closable = window.localStorage.getItem("closable");
@@ -37,8 +26,27 @@
     <div class="row">
         <!--左边-->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
-            <hr style="margin-bottom: 5px;margin-top: 10px">
+            <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <span> 发现</span>
+            </h3>
+<!--            <hr style="margin-bottom: 5px;margin-top: 10px">-->
+            <ul class="nav nav-tabs">
+                <li role="presentation" th:class="${sort == 'new' || sort == '' ? 'active':''}">
+                    <a th:href="@{/(sort='new')}">最新</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'hot30' ? 'active':''}">
+                    <a th:href="@{/(sort='hot30')}">30天最热</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'hot7' ? 'active':''}">
+                    <a th:href="@{/(sort='hot7')}">7天最热</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'hot' ? 'active':''}">
+                    <a th:href="@{/(sort='hot')}">最热</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'no' ? 'active':''}">
+                    <a th:href="@{/(sort='no')}" class="red">消灭零回复</a>
+                </li>
+            </ul>
             <!--问题列表-->
             <div class="media" th:each="question : ${pagination.dataList}">
                 <!--user-->
@@ -53,7 +61,9 @@
                     </h5>
 <!--                    <div th:text="${question.description}" style="color: #337ab7"></div>-->
                     <span class="text-color-999 text-desc">
-                        <span th:text="${question.user.name}"></span>发起了问题
+                        <span class=" index-tag "
+                              th:text="${question.tag.split(',').length>1?question.tag.split(',')[0]+'✦'+question.tag.split(',')[1]:question.tag.split(',')[0]}"></span>
+                        • <span th:text="${question.user.name}"></span>发起了问题
                         • <span th:text="${question.commentCount}"></span> 个回复
                         • <span th:text="${question.viewCount}"></span> 次浏览
                         • <span th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd  HH:mm')}"></span>
@@ -69,33 +79,33 @@
 
             <!--分页导航条开始-->
 
-            <nav aria-label="Page navigation" style="float: right" th:if="${pagination.totalPage>1}">
+            <nav aria-label="Page navigation"  th:if="${pagination.totalPage>1}">
                 <ul class="pagination pagination-sm">
 
                     <li th:if="${pagination.showFirstPage}">
-                        <a href="" th:href="@{/(page=1,search=${search})}" aria-label="Previous">
+                        <a href="" th:href="@{/(page=1,search=${search},tag=${tag},sort=${sort})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
 
                     <li th:if="${pagination.showPrevious}">
-                        <a href="" th:href="@{/(page=${pagination.page}-1,search=${search})}" aria-label="Previous">
+                        <a href="" th:href="@{/(page=${pagination.page}-1,search=${search},tag=${tag},sort=${sort})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
                     <li th:each="page : ${pagination.pages}"  th:class="${pagination.page==page}?'active'">
-                        <a href="#" th:href="@{/(page=${page},search=${search})}" th:text="${page}">1</a>
+                        <a href="#" th:href="@{/(page=${page},search=${search},tag=${tag},sort=${sort})}" th:text="${page}">1</a>
                     </li>
 
                     <li th:if="${pagination.showNext}">
-                        <a href="#" th:href="@{/(page=${pagination.page}+1,search=${search})}" aria-label="Next">
+                        <a href="#" th:href="@{/(page=${pagination.page}+1,search=${search},tag=${tag},sort=${sort})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
 
                     <li th:if="${pagination.showEndpage}">
-                        <a href="#" th:href="@{/(page=${pagination.totalPage},search=${search})}" aria-label="Next">
+                        <a href="#" th:href="@{/(page=${pagination.totalPage},search=${search},tag=${tag},sort=${sort})}" aria-label="Next">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
@@ -109,13 +119,32 @@
         <!--右边，热门话题-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="border-left: 1px solid #e6e6e6;">
 
-            <!--码问官方公众号-->
+            <!--官方公众号-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 side" style="margin-top: 10px">
-                <h4>官方微信</h4>
-                <img class="img-thumbnail question-wechat" src="/images/official-account.png">
+                <h4><img src="/images/weChat.png" width="50px" height="30px" style="margin-left: -9px;margin-right: -5px">官方微信</h4>
+                <img class="img-thumbnail question-wechat"  src="/images/official-account.png">
             </div>
 
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!--热门标签-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 style=" margin-bottom: 2px;"><img src="/images/hotTag3.png" width="30px" height="30px" style="margin-bottom: 16px;
+                          margin-left: 0;margin-right: 0">热门标签 </h4>
+                <div>
+
+                </div>
+                <span th:each="tag : ${tags}" style="margin-left: 14px;">
+                    <img src="/images/hotTag3.png" width="20px" height="20px" style="margin-bottom: 6px;">
+                    <a  th:href="@{/(page=1,search=${search},tag=${tag.name},sort=${sort})}"
+                        th:text="${'「'+tag.name+'」'}" class="index-community-tag glyphicon glyphicon-tags"></a>
+                    <p id="p-index">
+                        <span th:text="${tag.questionNum+'个问题'}"></span>
+                        <span th:text="${tag.commentCount+'个回复'}"></span>
+                    </p>
+
+                </span>
+
+            </div>
 
 
         </div>
@@ -127,8 +156,8 @@
 
 </div>
 <!--发起问题结束-->
-
-<div class="footer">Copyright © 2020  ICP备000000号 · 服务器赞助: <a href="https://passport.ucloud.cn/?invitation_code=nmtbj0lvttvx&ytag=re01B1">UCloud</a> · All Rights Reserved Powered By <a href="http://www.seven.co" target="_blank"> 涩问社区 </a></div>
+<div th:insert="~{footer :: foot}"></div>
+<!--<div class="footer">Copyright © 2020  ICP备000000号 · 服务器赞助: <a href="https://passport.ucloud.cn/?invitation_code=nmtbj0lvttvx&ytag=re01B1">UCloud</a> · All Rights Reserved Powered By <a href="http://www.dadiaoyuan.com" target="_blank"> 涩问社区 </a></div>-->
 
 </body>
 </html>

@@ -33,9 +33,11 @@ public interface QuestionService {
      * @param page
      * @param size
      * @param search
+     * @param tag
+     * @param tag xx天最热
      * @return
      */
-    PaginationDTO pagination(String search,Integer page,Integer size);
+    PaginationDTO pagination(String sort,String tag,String search,Integer page,Integer size);
 
     /**
      * 个人页面分页功能

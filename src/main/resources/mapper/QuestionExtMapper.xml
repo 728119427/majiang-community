@@ -42,8 +42,17 @@
   <select id="countBySearch" parameterType="co.mawen.majiangcommunity.dto.QuestionQueryDTO" resultType="Long">
         SELECT COUNT(*) FROM question
         <where>
-          <if test="search!=null">
-            AND TITLE regexp #{search}
+          <if test="search!=null and search !=''">
+            OR TITLE regexp #{search}
+          </if>
+          <if test="tag!=null and tag !=''">
+            OR tag regexp #{tag}
+          </if>
+          <if test="sort!=null and sort !='' and sort=='no' ">
+            AND comment_Count=0
+          </if>
+          <if test="time!=null and time !='' ">
+            AND gmt_create > #{time}
           </if>
         </where>
   </select>
@@ -51,10 +60,31 @@
   <select id="selectBySearch" parameterType="co.mawen.majiangcommunity.dto.QuestionQueryDTO" resultMap="BaseResultMap">
     SELECT * FROM question q INNER JOIN user u ON q.creator=u.id
     <where>
-      <if test="search!=null">
-        AND TITLE regexp #{search}
+      <if test="search!=null and search !=''">
+        OR TITLE regexp #{search}
+      </if>
+      <if test="tag!=null and tag !=''">
+        OR tag regexp #{tag}
+      </if>
+      <if test="sort!=null and sort !='' and sort=='no' ">
+        AND comment_Count=0
+      </if>
+      <if test="time!=null and time !='' ">
+        AND q.gmt_create > #{time}
       </if>
     </where>
-    ORDER BY q.gmt_create DESC LIMIT #{offset},#{size}
+    <if test="sort==null or sort =='' ">
+      ORDER BY q.gmt_create DESC LIMIT #{offset},#{size}
+    </if>
+    <if test="sort!=null and sort !='' and sort=='no' ">
+      ORDER BY q.gmt_create DESC LIMIT #{offset},#{size}
+    </if>
+    <if test="sort!=null and sort !='' and sort=='new' ">
+      ORDER BY q.gmt_create DESC LIMIT #{offset},#{size}
+    </if>
+    <if test="sort!=null and sort !='' and (sort=='hot' or sort=='hot7' or sort=='hot30') ">
+      ORDER BY q.comment_count*5+q.view_count DESC, q.gmt_create DESC LIMIT #{offset},#{size}
+    </if>
+
   </select>
 </mapper>

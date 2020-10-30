@@ -1,6 +1,5 @@
 server:
     port: 8080
-
 #github
 github:
   client:
@@ -8,7 +7,6 @@ github:
     secret: 6ceb76dd3a8ece11ce0aae2e994fadc37592de3d
   redirect:
     uri: http://localhost:8080/callback
-
 #数据源配置
 spring:
   datasource:
@@ -32,6 +30,7 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
 #  mvc:
 #    hiddenmethod:
 #      filter:
