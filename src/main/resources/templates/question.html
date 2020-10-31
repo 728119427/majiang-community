@@ -42,34 +42,35 @@
         <!--内容-->
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
-            <textarea style="display:none;" th:text="${question.description}"></textarea>
+            <textarea style="display:none;" th:text="${question.description}" ></textarea>
         </div>
         <script type="text/javascript">
             $(function () {
                 editormd.markdownToHTML("question-view", {});
             });
         </script>
-<!--
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+        <!--底部广告投放-->
+  <!--      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
              th:if="${!#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}"
              th:each="ad : ${#httpServletRequest.getServletContext().getAttribute('FOOTER')}">
             <a th:href="${ad.url}" th:text="${ad.title}" target="_blank"
                style="color: #A00;font-weight: bold;"></a>
-        </div>
+        </div>-->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="width: 100%;"
              th:if="${#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            &lt;!&ndash; 页尾广告 &ndash;&gt;
+            <script data-ad-client="ca-pub-7434394483574558" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- 页尾广告 -->
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="ca-pub-9804684553882114"
+                 data-ad-client="ca-pub-7434394483574558"
                  data-ad-slot="4772323686"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>-->
+        </div>
+        <!--底部广告投放结束-->
 
         <!--标签-->
         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 5px">
@@ -228,20 +229,13 @@
         </div>
     </div>
 
-    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -23px; margin-top: 38px;">
-
-    <!--广告承接-->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 side" style="margin-top: 40px">
-        <h4><img src="/images/weChat.png" width="50px" height="30px" style="margin-left: -9px;margin-right:-5px">广告承接</h4>
-        <a href="https://ys.mihoyo.com/"><img class="img-thumbnail question-wechat" src="/images/genshi45.jpg"></a>
-        <a href="https://ys.mihoyo.com/"> <img class="img-thumbnail question-wechat" src="/images/genshin.jpg" style=" margin-top: 7px;"></a>
-    </div>
-<!--                <div th:insert="~{notice :: notice}"></div>-->
-<!--                <div th:insert="~{side :: side}"></div>-->
+    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 38px;">
+    <!--右边广告栏-->
+                <div th:insert="~{side :: side}"></div>
 
     <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"style="margin-top: 22px">
     <!--相关问题-->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left: 10px;">
         <h4><img src="/images/question.png" width="22px" height="22x" style="margin-bottom: 7px;margin-left: 0;margin-right: 4px">相关问题</h4>
         <ul class="question-related">
             <li th:each="related : ${relatedQuestions}" style="margin-left: 26px;

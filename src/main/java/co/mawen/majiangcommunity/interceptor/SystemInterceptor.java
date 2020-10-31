@@ -1,6 +1,8 @@
 package co.mawen.majiangcommunity.interceptor;
 
+import co.mawen.majiangcommunity.enums.AdPosEnum;
 import co.mawen.majiangcommunity.model.User;
+import co.mawen.majiangcommunity.service.AdService;
 import co.mawen.majiangcommunity.service.NotificationService;
 import co.mawen.majiangcommunity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,15 @@ public class SystemInterceptor implements HandlerInterceptor {
     private UserService userService;
     @Autowired
     private NotificationService notificationService;
-
+    @Autowired
+    private AdService adService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        for(AdPosEnum adPosEnum: AdPosEnum.values()){
+            request.getServletContext().setAttribute(adPosEnum.name(),adService.list(adPosEnum.name()));
+        }
+
         Cookie[] cookies = request.getCookies();
         if(cookies!=null){
             for (Cookie cookie : cookies) {

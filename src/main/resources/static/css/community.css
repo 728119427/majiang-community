@@ -50,9 +50,9 @@ body {
     height: 20px;
     line-height: 16px;
     padding: 2px 5px;
-    background-color: #EFEFEF;
+    background-color: #99CFFF;
     font-size: 12px;
-    color: #999 !important;
+    color: #ffffff !important;
     border-radius: 4px;
    margin-top: 6px;
     margin-left: -3px;
@@ -99,7 +99,9 @@ body {
 }
 
 .question-wechat {
-    width: 95%;
+    width: 260px;
+    height: 140px;
+
 }
 
 .publish-tag-tab {
