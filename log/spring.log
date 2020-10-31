@@ -2757,3 +2757,49 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2020-10-31 18:01:31.649  INFO 27652 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2020-10-31 18:01:31.653  INFO 27652 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
 >>>>>>> c569f5919f95d553b9c718464c41dc0fd26976f3
+2020-10-31 21:05:09.315  INFO 100073 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 100073 (/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/majiang-community)
+2020-10-31 21:05:09.318  INFO 100073 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
+2020-10-31 21:05:12.433  INFO 100073 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-10-31 21:05:12.471  INFO 100073 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-10-31 21:05:12.471  INFO 100073 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-31 21:05:12.629  INFO 100073 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-10-31 21:05:12.629  INFO 100073 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3175 ms
+2020-10-31 21:05:15.098  INFO 100073 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-31 21:05:15.305  INFO 100073 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-10-31 21:05:15.723  INFO 100073 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-10-31 21:05:16.724  INFO 100073 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://10.9.47.186:3306/community (MySQL 5.6)
+2020-10-31 21:05:17.018  INFO 100073 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 11 migrations (execution time 00:00.122s)
+2020-10-31 21:05:17.066  INFO 100073 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `community`: 7
+2020-10-31 21:05:17.068  INFO 100073 --- [main] o.f.core.internal.command.DbMigrate      : Schema `community` is up to date. No migration necessary.
+2020-10-31 21:05:17.253  INFO 100073 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-31 21:05:17.473  INFO 100073 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-10-31 21:05:17.509  INFO 100073 --- [main] c.m.m.MajiangCommunityApplication        : Started MajiangCommunityApplication in 9.37 seconds (JVM running for 10.338)
+2020-10-31 21:05:17.527  INFO 100073 --- [scheduling-1] c.m.m.schedule.HotTagSchedule            : The time is Sat Oct 31 21:05:17 CST 2020
+2020-10-31 21:05:43.429  INFO 100073 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-31 21:05:43.429  INFO 100073 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-10-31 21:05:43.449  INFO 100073 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+2020-10-31 21:10:03.429  INFO 100073 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-31 21:10:03.429  INFO 100073 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-31 21:14:53.894  INFO 100279 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 100279 (/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/majiang-community)
+2020-10-31 21:14:53.896  INFO 100279 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
+2020-10-31 21:14:56.800  INFO 100279 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-10-31 21:14:56.829  INFO 100279 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-10-31 21:14:56.829  INFO 100279 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-31 21:14:56.980  INFO 100279 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-10-31 21:14:56.980  INFO 100279 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2940 ms
+2020-10-31 21:14:59.206  INFO 100279 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-31 21:14:59.399  INFO 100279 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-10-31 21:14:59.765  INFO 100279 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-10-31 21:15:00.533  INFO 100279 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://10.9.47.186:3306/community (MySQL 5.6)
+2020-10-31 21:15:00.846  INFO 100279 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 11 migrations (execution time 00:00.111s)
+2020-10-31 21:15:00.913  INFO 100279 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `community`: 7
+2020-10-31 21:15:00.918  INFO 100279 --- [main] o.f.core.internal.command.DbMigrate      : Schema `community` is up to date. No migration necessary.
+2020-10-31 21:15:01.093  INFO 100279 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-31 21:15:01.216  INFO 100279 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-10-31 21:15:01.268  INFO 100279 --- [main] c.m.m.MajiangCommunityApplication        : Started MajiangCommunityApplication in 8.503 seconds (JVM running for 9.366)
+2020-10-31 21:15:01.276  INFO 100279 --- [scheduling-1] c.m.m.schedule.HotTagSchedule            : The time is Sat Oct 31 21:15:01 CST 2020
+2020-10-31 21:15:09.653  INFO 100279 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-31 21:15:09.653  INFO 100279 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-10-31 21:15:09.685  INFO 100279 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 31 ms
+2020-10-31 21:51:47.116  INFO 100279 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-31 21:51:47.117  INFO 100279 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
