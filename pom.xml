@@ -41,6 +41,16 @@
                 <db.password>3636136g</db.password>
             </properties>
         </profile>
+
+        <profile>
+            <id>prod2</id>
+            <properties>
+                <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
+                <db.url>jdbc:mysql://rm-wz9s2mis78986s181zo.mysql.rds.aliyuncs.com:3306/community?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT</db.url>
+                <db.user>root</db.user>
+                <db.password>3636136g</db.password>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
