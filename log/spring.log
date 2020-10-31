@@ -1,0 +1,20 @@
+2020-10-29 18:10:53.114  INFO 89292 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 89292 (/App/majiang-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/majiang-community)
+2020-10-29 18:10:53.117  INFO 89292 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
+2020-10-29 18:10:56.109  INFO 89292 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2020-10-29 18:10:56.134  INFO 89292 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-10-29 18:10:56.134  INFO 89292 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-29 18:10:56.290  INFO 89292 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-10-29 18:10:56.290  INFO 89292 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3038 ms
+2020-10-29 18:10:58.578  INFO 89292 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-29 18:10:58.791  INFO 89292 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-10-29 18:10:59.165  INFO 89292 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-10-29 18:11:00.257  INFO 89292 --- [main] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://10.9.47.186:3306/community (MySQL 5.6)
+2020-10-29 18:11:00.549  INFO 89292 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 10 migrations (execution time 00:00.103s)
+2020-10-29 18:11:00.621  INFO 89292 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `community`: 6
+2020-10-29 18:11:00.623  INFO 89292 --- [main] o.f.core.internal.command.DbMigrate      : Schema `community` is up to date. No migration necessary.
+2020-10-29 18:11:00.922  INFO 89292 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2020-10-29 18:11:00.963  INFO 89292 --- [main] c.m.m.MajiangCommunityApplication        : Started MajiangCommunityApplication in 8.964 seconds (JVM running for 9.856)
+2020-10-29 18:11:09.188  INFO 89292 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-29 18:11:09.188  INFO 89292 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-10-29 18:11:09.210  INFO 89292 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 22 ms
+2020-10-29 22:34:44.338  INFO 89292 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
