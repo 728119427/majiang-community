@@ -65,9 +65,14 @@
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
--->
 
         <table  tableName="notification" domainObjectName="Notification" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
+-->
+
+        <table  tableName="ad" domainObjectName="Ad" >
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>

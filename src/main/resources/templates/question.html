@@ -2,34 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title th:text="${question.title}"></title>
 
-
-<!--引入js-->
-<script src="" th:src="@{/js/jquery-3.4.1.min.js}"></script>
-    <!--引入js-->
-<script src="" th:src="@{/js/community.js}"></script>
-
-<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
-
-<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-<link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" >
-
-<!-- 自定义样式 -->
-<link rel="stylesheet" th:href="@{/css/community.css}" >
-
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script th:src="@{/js/bootstrap.js}" ></script>
-<script src="" th:src="@{/js/moment.js}"></script>
-
-    <link rel="stylesheet" href="/css/editormd.min.css">
-    <link rel="stylesheet" href="/css/editormd.preview.min.css">
-    <script src="/js/editormd.min.js" type="application/javascript"></script>
-    <script src="/js/moment.js" type="application/javascript"></script>
-    <script src="/js/lib/marked.min.js"></script>
-    <script src="/js/lib/prettify.min.js"></script>
-
+    <div th:insert="~{import::head}"></div>
+    <div th:insert="~{import::markdown}"></div>
 
 </head>
 
@@ -66,34 +42,35 @@
         <!--内容-->
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
-            <textarea style="display:none;" th:text="${question.description}"></textarea>
+            <textarea style="display:none;" th:text="${question.description}" ></textarea>
         </div>
         <script type="text/javascript">
             $(function () {
                 editormd.markdownToHTML("question-view", {});
             });
         </script>
-<!--
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+        <!--底部广告投放-->
+  <!--      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
              th:if="${!#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}"
              th:each="ad : ${#httpServletRequest.getServletContext().getAttribute('FOOTER')}">
             <a th:href="${ad.url}" th:text="${ad.title}" target="_blank"
                style="color: #A00;font-weight: bold;"></a>
-        </div>
+        </div>-->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="width: 100%;"
              th:if="${#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            &lt;!&ndash; 页尾广告 &ndash;&gt;
+            <script data-ad-client="ca-pub-7434394483574558" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- 页尾广告 -->
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="ca-pub-9804684553882114"
+                 data-ad-client="ca-pub-7434394483574558"
                  data-ad-slot="4772323686"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>-->
+        </div>
+        <!--底部广告投放结束-->
 
         <!--标签-->
         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 5px">
@@ -105,14 +82,14 @@
         </div>
 
         <!--编辑-->
-        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px">
+        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;margin-bottom: 10px;">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <a th:href="@{'/publish/'+${question.id}}" class="community-menu"
                th:if="${session.user != null && session.user.id == question.creator}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 13px; font-weight: normal;color: #999;">编辑</span>
             </a>
         </div>
-        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
     </div>
 
     <!--回复-->
@@ -243,28 +220,26 @@
                          th:src="${question.user.avatarUrl}">
                 </a>
             </div>
-            <div class="media-body">
+            <div class="media-body" style="padding-top: 2px;">
                 <h5 class="media-heading">
                     <span th:text="${question.user.name}"></span>
+                    <div th:text="${question.user.bio}" style="padding-top: 2px;font-size: 12px;font-weight: normal;color: #999;"></div>
                 </h5>
             </div>
         </div>
     </div>
 
-    <!--码问官方公众号-->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 side" style="margin-top: 40px">
-        <h4>官方微信</h4>
-        <img class="img-thumbnail question-wechat" src="/images/official-account.png">
-    </div>
-<!--                <div th:insert="~{notice :: notice}"></div>-->
-<!--                <div th:insert="~{side :: side}"></div>-->
-    <!--相关问题-->
-    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 38px;">
+    <!--右边广告栏-->
+                <div th:insert="~{side :: side}"></div>
 
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h4>相关问题</h4>
+    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"style="margin-top: 22px">
+    <!--相关问题-->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left: 10px;">
+        <h4><img src="/images/question.png" width="22px" height="22x" style="margin-bottom: 7px;margin-left: 0;margin-right: 4px">相关问题</h4>
         <ul class="question-related">
-            <li th:each="related : ${relatedQuestions}">
+            <li th:each="related : ${relatedQuestions}" style="margin-left: 26px;
+">
                 <a th:href="@{'/question/'+ ${related.id}}" th:text="${related.title}"></a>
             </li>
         </ul>
@@ -280,7 +255,6 @@
 </div>
 <!--发起问题结束-->
 
-
-<div class="footer">Copyright © 2020  ICP备000000号 · 服务器赞助: <a href="https://passport.ucloud.cn/?invitation_code=nmtbj0lvttvx&ytag=re01B1">UCloud</a> · All Rights Reserved Powered By <a href="http://www.seven.co" target="_blank"> 涩问社区 </a></div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>

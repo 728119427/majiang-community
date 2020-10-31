@@ -2,6 +2,7 @@ package co.mawen.majiangcommunity.service.impl;
 
 import co.mawen.majiangcommunity.dto.PaginationDTO;
 import co.mawen.majiangcommunity.dto.QuestionQueryDTO;
+import co.mawen.majiangcommunity.enums.SortEnum;
 import co.mawen.majiangcommunity.exception.CustomizeErrorCode;
 import co.mawen.majiangcommunity.exception.CustomizeException;
 import co.mawen.majiangcommunity.mapper.QuestionExtMapper;
@@ -48,19 +49,41 @@ public class QuestionServiceImpl implements QuestionService {
      * @param search
      * @param page
      * @param size
+     * @param tag
+     * @param sort
      * @return
      */
     @Override
-    public PaginationDTO pagination(String search,Integer page, Integer size) {
+    public PaginationDTO pagination(String sort,String tag,String search,Integer page, Integer size) {
+        //搜索条件
         if(!StringUtils.isEmpty(search)){
             String[] split = search.split(" ");
             search = Arrays.stream(split).collect(Collectors.joining("|"));
-        }else {
-            search=null;
         }
+        //标签
+        if(!StringUtils.isEmpty(tag)){
+            String[] split = tag.split(",");
+            tag = Arrays.stream(split).collect(Collectors.joining("|"));
+        }
+
+
 
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
+        questionQueryDTO.setTag(tag);
+        //热门条件
+        for(SortEnum sortEnum:SortEnum.values()){
+            if(sortEnum.name().toLowerCase().equals(sort)){
+                questionQueryDTO.setSort(sort);
+            }
+            if(sortEnum==SortEnum.HOT7){
+                questionQueryDTO.setTime(System.currentTimeMillis()-1000L * 60 * 60 * 24 * 7);
+            }
+            if(sortEnum==SortEnum.HOT30){
+                questionQueryDTO.setTime(System.currentTimeMillis()-1000L * 60 * 60 * 24 * 30);
+            }
+        }
+
         Long totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         PaginationDTO<Question> paginationDTO = new PaginationDTO<>();
         paginationDTO.setPagination(page,totalCount,size);

@@ -43,7 +43,7 @@ public class TagCache {
 
         TagDTO others=new TagDTO();
         others.setCategoryName("其他");
-        others.setTags(Arrays.asList("巨乳","超级","大奶子","宝贝","神奇","比卡丘","大奶瓜","老夫","神奇宝贝","神","广告","招聘"));
+        others.setTags(Arrays.asList("游戏","动漫","漫画","巨乳","超级","大奶子","宝贝","神奇","比卡丘","大奶瓜","老夫","神奇宝贝","神","广告","招聘"));
         tagDTOS.add(others);
         return tagDTOS;
     }
