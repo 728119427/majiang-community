@@ -33,7 +33,7 @@ public class IndexController {
     @GetMapping("/")
     public String index( Model model,
                         @RequestParam(value = "page",defaultValue = "1",required = false) Integer page,
-                        @RequestParam(value = "size",defaultValue = "10",required = false) Integer size,
+                        @RequestParam(value = "size",defaultValue = "12",required = false) Integer size,
                         @RequestParam(value = "search",required = false) String search,
                         @RequestParam(value = "tag",required = false) String tag,
                         @RequestParam(value = "sort",defaultValue = "new") String sort,
