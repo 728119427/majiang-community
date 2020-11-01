@@ -94,9 +94,9 @@ public class QuestionServiceImpl implements QuestionService {
         questionQueryDTO.setPage(page);
         questionQueryDTO.setSize(size);
         List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
-        if (questions==null || questions.size()==0){
+   /*     if (questions==null || questions.size()==0){
             questions=new ArrayList<>();
-        }
+        }*/
         paginationDTO.setDataList(questions);
         return paginationDTO;
     }
@@ -135,7 +135,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Question getUnionQuestionById(Integer id) {
         Question question = questionMapper.getUnionQuestionById(id);
-        //if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND.getMessage());
+        if(question==null)throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         return question;
     }
 
