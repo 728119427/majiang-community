@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 2020-11-01 00:15:26.086  INFO 101687 --- [scheduling-1] c.m.m.schedule.HotTagSchedule            : The time is Sun Nov 01 00:15:26 CST 2020
 2020-11-01 00:16:37.411  INFO 101687 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
@@ -2950,3 +2951,5 @@ co.mawen.majiangcommunity.exception.CustomizeException: 你找到问题不在了
 2020-11-01 11:33:53.854  INFO 104741 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 22 ms
 2020-11-01 11:36:10.728  INFO 104741 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
 2020-11-01 11:36:10.729  INFO 104741 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+=======
+>>>>>>> fc1feed4c8f2b754c169cf4268d3aa7de02e1949
