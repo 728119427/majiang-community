@@ -33,7 +33,7 @@ public class QuestionController {
                            @RequestParam(name = "page",defaultValue = "1",required = false) Integer page,
                            @RequestParam(name = "size",defaultValue = "5",required = false) Integer size){
         String localReferer = request.getHeader("Referer");
-        if(localReferer.equalsIgnoreCase(referer)){
+        if(localReferer!=null && localReferer.equalsIgnoreCase(referer)){
             questionService.incView(id);
         }
         Question question = questionService.getUnionQuestionById(id);
