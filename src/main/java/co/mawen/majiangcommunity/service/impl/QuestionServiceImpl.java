@@ -75,12 +75,14 @@ public class QuestionServiceImpl implements QuestionService {
         for(SortEnum sortEnum:SortEnum.values()){
             if(sortEnum.name().toLowerCase().equals(sort)){
                 questionQueryDTO.setSort(sort);
-            }
+
             if(sortEnum==SortEnum.HOT7){
                 questionQueryDTO.setTime(System.currentTimeMillis()-1000L * 60 * 60 * 24 * 7);
             }
             if(sortEnum==SortEnum.HOT30){
                 questionQueryDTO.setTime(System.currentTimeMillis()-1000L * 60 * 60 * 24 * 30);
+            }
+
             }
         }
 
