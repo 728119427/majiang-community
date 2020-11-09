@@ -1,5 +1,5 @@
 
-<h1 align="center"><a href="https://github.com/728119427/seven-community" target="_blank">MyBlog</a></h1>
+<h1 align="center"><a href="https://github.com/728119427/seven-community" target="_blank">seven-community</a></h1>
 
 <br>
 <br>
