@@ -1,14 +1,20 @@
 ## Seven涩问社区
 **声明：项目是学习B站视频所做，并非个人原创！在原项目基础上略微做了些改动。**<br/>
 [视频地址](https://www.bilibili.com/video/BV1r4411r7au)
+<br/>
+<br/>
 
 ## 在线演示地址
 [在线演示](http://117.50.63.69:8080)
+
+<br/>
 
 ## 功能列表
 
 > 发帖，回复，图片上传，热门标签，7天最热，30天最热<br/>
 >消息通知，搜索，github授权登录等功能！
+    
+<br/>    
     
 ## 开发环境及工具
 > - IntelliJ IDEA
@@ -16,6 +22,8 @@
 > - SpringBoot2.x
 > - Maven
 > - Git
+
+<br/>   
 
 
 ## 技术栈 
@@ -31,6 +39,8 @@
 > - Mysql
 > - Flyway 
 
+<br/>   
+
 ## 集成插件或工具   
 |   插件名称      |           链接地址                 |
 | :------:| :--------------------------:|
@@ -39,7 +49,7 @@
 |Github OAuth|https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/|
 |Lombok| https://www.projectlombok.org|
 
-
+<br/>   
 
 ## 数据库表展示
 **`项目使用了数据库管理工具flyway，运行项目后会自动生成表，但是需要先创建community数据库`**
@@ -125,6 +135,8 @@ CREATE TABLE `ad`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8;
 ````
 
+<br/>   
+
 ## 页面效果展示
 
 ![](http://117.50.63.69/upload/2020/11/Snipaste_2020-11-03_18-49-35-14748028ce3142a9b7a7aad2b11c0437.png)
@@ -132,6 +144,8 @@ CREATE TABLE `ad`  (
 ![](http://seven.cn-bj.ufileos.com/%E8%AE%BA%E5%9D%9B%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA1.png?UCloudPublicKey=CEnvo7uzX5eCtplVo47O2X4VievOYUd30fyy5QXO3&Signature=SducLVbDUQu%2BTzTa%2FhZcKoMRXXI%3D&Expires=1604930988)
 
 ![](http://seven.cn-bj.ufileos.com/%E8%AE%BA%E5%9D%9B%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA2.png?UCloudPublicKey=CEnvo7uzX5eCtplVo47O2X4VievOYUd30fyy5QXO3&Signature=XCfSHXGqwRyKuhDkKf4clfm8nto%3D&Expires=1604931048)
+
+<br/>   
 
 ## 结语
 后续可能还会对该社区进行其他功能的开发,敬请期待！
