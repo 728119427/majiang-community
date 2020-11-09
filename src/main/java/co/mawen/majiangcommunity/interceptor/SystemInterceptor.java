@@ -6,6 +6,7 @@ import co.mawen.majiangcommunity.service.AdService;
 import co.mawen.majiangcommunity.service.NotificationService;
 import co.mawen.majiangcommunity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -20,8 +21,13 @@ public class SystemInterceptor implements HandlerInterceptor {
     private NotificationService notificationService;
     @Autowired
     private AdService adService;
+    @Value("${github.redirect.uri}")
+    private String redirectUri;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //设置 context 级别的属性
+        request.getServletContext().setAttribute("redirectUri", redirectUri);
 
         for(AdPosEnum adPosEnum: AdPosEnum.values()){
             request.getServletContext().setAttribute(adPosEnum.name(),adService.list(adPosEnum.name()));
