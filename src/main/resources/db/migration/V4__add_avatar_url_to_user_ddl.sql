@@ -1,1 +1,1 @@
-ALTER TABLE user Add(avatar_url varchar(255))
+ALTER TABLE user Add(`avatar_url` varchar(255))
