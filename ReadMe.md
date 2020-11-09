@@ -1,3 +1,9 @@
+
+<h1 align="center"><a href="https://github.com/728119427/seven-community" target="_blank">MyBlog</a></h1>
+
+<br>
+<br>
+
 ## Seven涩问社区
 **声明：项目是学习B站视频所做，并非个人原创！在原项目基础上略微做了些改动。**<br/>
 [视频地址](https://www.bilibili.com/video/BV1r4411r7au)
