@@ -7,7 +7,7 @@ github:
     id: f4e182db283dfd9e81ac
     secret: 6ceb76dd3a8ece11ce0aae2e994fadc37592de3d
   redirect:
-    uri: http://117.50.63.69：8080/callback
+    uri: http://117.50.63.69:8080/callback
 
 #数据源配置
 spring:
