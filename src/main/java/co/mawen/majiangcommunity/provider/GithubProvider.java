@@ -1,6 +1,7 @@
 package co.mawen.majiangcommunity.provider;
 
 import co.mawen.majiangcommunity.dto.GithubDTO;
+import co.mawen.majiangcommunity.dto.GithubUser;
 import com.alibaba.fastjson.JSON;
 
 import okhttp3.*;
@@ -29,14 +30,15 @@ public class GithubProvider {
         return null;
     }
 
-    public String getUserData(String accessToken){
+    public GithubUser getUserData(String accessToken){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api.github.com/user").header("Authorization","token "+accessToken)
                 .build();
         try (Response response = client.newCall(request).execute()) {
             String userData = response.body().string();
-            return userData;
+            GithubUser githubUser = JSON.parseObject(userData, GithubUser.class);
+            return githubUser;
         } catch (IOException e) {
             e.printStackTrace();
         }
