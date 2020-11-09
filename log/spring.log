@@ -160,6 +160,7 @@
 2020-11-09 10:52:23.401  INFO 39356 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-11-09 10:52:23.401  INFO 39356 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2020-11-09 10:52:23.405  INFO 39356 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+<<<<<<< HEAD
 2020-11-09 11:06:26.818  INFO 332020 --- [main] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication v0.0.1-SNAPSHOT on 10-9-117-58 with PID 332020 (/App/seven-community/target/majiang-community-0.0.1-SNAPSHOT.jar started by root in /App/seven-community)
 2020-11-09 11:06:26.820  INFO 332020 --- [main] c.m.m.MajiangCommunityApplication        : The following profiles are active: prod
 2020-11-09 11:06:29.764  INFO 332020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
@@ -240,3 +241,30 @@ java.lang.NumberFormatException: null
 
 2020-11-09 11:20:25.012  INFO 332020 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
 2020-11-09 11:20:25.013  INFO 332020 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+=======
+2020-11-09 11:18:40.052  INFO 12488 --- [restartedMain] c.m.m.MajiangCommunityApplication        : Starting MajiangCommunityApplication on loveBusty with PID 12488 (E:\JAVA\JetBrains\IdeaProjects\majiang-community\target\classes started by yuanyuanyuan in E:\JAVA\JetBrains\IdeaProjects\majiang-community)
+2020-11-09 11:18:40.056  INFO 12488 --- [restartedMain] c.m.m.MajiangCommunityApplication        : No active profile set, falling back to default profiles: default
+2020-11-09 11:18:40.121  INFO 12488 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in E:\JAVA\apache-maven-3.6.3\maven_repository\javax\mail\mail\1.4\mail-1.4.jar referenced one or more files that do not exist: file:/E:/JAVA/apache-maven-3.6.3/maven_repository/javax/mail/mail/1.4/activation.jar
+2020-11-09 11:18:40.121  INFO 12488 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-09 11:18:40.121  INFO 12488 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-09 11:18:41.367  INFO 12488 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-09 11:18:41.377  INFO 12488 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-09 11:18:41.377  INFO 12488 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-09 11:18:41.488  INFO 12488 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-09 11:18:41.488  INFO 12488 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1367 ms
+2020-11-09 11:18:41.816  INFO 12488 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/community?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
+2020-11-09 11:18:42.468  INFO 12488 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-09 11:18:42.537  INFO 12488 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-11-09 11:18:42.689  INFO 12488 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 5.2.4 by Boxfuse
+2020-11-09 11:18:42.691  INFO 12488 --- [restartedMain] o.f.c.internal.database.DatabaseFactory  : Database: jdbc:mysql://localhost:3306/community (MySQL 5.5)
+2020-11-09 11:18:42.804  INFO 12488 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 11 migrations (execution time 00:00.037s)
+2020-11-09 11:18:42.815  INFO 12488 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `community`: 7
+2020-11-09 11:18:42.816  INFO 12488 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `community` is up to date. No migration necessary.
+2020-11-09 11:18:42.878  INFO 12488 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-11-09 11:18:43.027  INFO 12488 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-09 11:18:43.075  INFO 12488 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-09 11:18:43.084  INFO 12488 --- [scheduling-1] c.m.m.schedule.HotTagSchedule            : The time is Mon Nov 09 11:18:43 CST 2020
+2020-11-09 11:18:43.087  INFO 12488 --- [restartedMain] c.m.m.MajiangCommunityApplication        : Started MajiangCommunityApplication in 3.569 seconds (JVM running for 5.607)
+2020-11-09 11:18:53.438  INFO 12488 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-09 11:18:53.438  INFO 12488 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-09 11:18:53.444  INFO 12488 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
