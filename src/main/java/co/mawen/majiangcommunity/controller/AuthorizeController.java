@@ -49,7 +49,7 @@ public class AuthorizeController {
             //登录成功，保存用户信息
             System.out.println(githubUser);
             User user = new User();
-            user.setAccountId(Long.parseLong(githubUser.getId()));
+            user.setAccountId(githubUser.getId());
             user.setName(githubUser.getName());
             user.setBio(githubUser.getBio());
             String token = UUID.randomUUID().toString().replace("-", "").toUpperCase();
